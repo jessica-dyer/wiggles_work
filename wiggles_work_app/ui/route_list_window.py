@@ -21,24 +21,34 @@ from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 
+from ui.edit_route_view import *
+
+
 class RouteListWindow(App):
 
     def __init__(self):
         super().__init__()
+        self.edit_route_view = None
+        self.top_level_layout = GridLayout(rows=3)
         self.add_button = Button(text="Add Route!",
-                          font_size="20sp",
-                          background_color=(66 / 255, 135 / 255, 245 / 255, 1),
-                          color=(2, .5, .5, 1),
-                          size=(32, 32),
-                          size_hint=(.2, .2),
-                          pos=(300, 250))
+                                 font_size="20sp",
+                                 background_color=(66 / 255, 135 / 255, 245 / 255, 1),
+                                 color=(2, .5, .5, 1),
+                                 size=(32, 32),
+                                 size_hint=(.2, .2),
+                                 pos=(300, 250))
         self.add_button.bind(on_press=self.onClick)
 
     def onClick(self, something):
         print("Got a click!")
+        if self.edit_route_view != None:
+            self.top_level_layout.remove_widget(self.edit_route_view)
+
+        self.edit_route_view = EditRouteView()
+        self.top_level_layout.add_widget(self.edit_route_view)
+
 
     def build(self):
-        layout = GridLayout(rows=1)
 
-        layout.add_widget(self.add_button)
-        return layout
+        self.top_level_layout.add_widget(self.add_button)
+        return self.top_level_layout

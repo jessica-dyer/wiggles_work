@@ -1,9 +1,12 @@
 import json
 from abc import ABC, abstractmethod
+
+
 class JsonMappable(ABC):
     @abstractmethod
     def to_dict(self):
         pass
+
 
 class Route(JsonMappable):
     def __init__(self, name, grade, crag):
@@ -26,7 +29,8 @@ class Route(JsonMappable):
 
     def pretty_print(self):
         """Nicely prints the route name and grade."""
-        print(f"The route name is {self.name} and the grade is {self.grade}. This route is located at the {self.crag} crag.")
+        print(
+            f"The route name is {self.name} and the grade is {self.grade}. This route is located at the {self.crag} crag.")
 
 
 class RouteList(JsonMappable):
@@ -37,7 +41,7 @@ class RouteList(JsonMappable):
         route_dictionaries = []
         for r in self.routes:
             route_dictionaries.append(r.to_dict())
-        dictionary = {}
+        dictionary={}
         dictionary["routes"] = route_dictionaries
         return dictionary
 
@@ -48,12 +52,12 @@ class RouteList(JsonMappable):
         for r in self.routes:
             r.pretty_print()
 
-    def export_to_file(self, filename = 'saved_routes.json'):
+    def export_to_file(self, filename='saved_routes.json'):
         dictionary = self.to_dict()
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(dictionary, f, ensure_ascii=False, indent=4)
 
-    def import_from_file(self, filename = 'saved_routes.json'):
+    def import_from_file(self, filename='saved_routes.json'):
         with open(filename, 'r', encoding='utf-8') as f:
             dictionary = json.load(f)
             route_dictionaries = dictionary["routes"]

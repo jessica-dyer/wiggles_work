@@ -1,5 +1,5 @@
 from data_structures.data_structures import *
-from ui.route_list_window import *
+from ui.route_list_window import RouteListWindow
 
 
 def test():
