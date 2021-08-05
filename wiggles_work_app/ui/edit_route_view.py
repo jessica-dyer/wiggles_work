@@ -27,9 +27,9 @@ class EditRouteView(GridLayout):
 
     def __init__(self):
         super().__init__(rows=4)
-        self.name_field = FormField("Name", "")
-        self.grade_field = FormField("Grade", "")
-        self.crag_field = FormField("Crag", "")
+        self.name_field = FormField("Route Name:", "")
+        self.grade_field = FormField("Grade:", "")
+        self.crag_field = FormField("Crag:", "")
         self.add_widget(self.name_field)
         self.add_widget(self.grade_field)
         self.add_widget(self.crag_field)
