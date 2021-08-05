@@ -60,15 +60,3 @@ class RouteList(JsonMappable):
             for d in route_dictionaries:
                 route = Route.construct_from_dict(d)
                 self.routes.append(route)
-
-def test():
-    # x = Route("Outer Space", "5.9+", "Snow Creek")
-    master_list = RouteList()
-    # master_list.add_route(x)
-    master_list.import_from_file()
-    master_list.pretty_print_all()
-    master_list.export_to_file()
-
-
-test()
-
