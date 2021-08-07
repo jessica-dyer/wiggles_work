@@ -20,11 +20,35 @@ from kivy.uix.button import Button
 # then adds widgets to the resulting “cells”.
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
+from kivy.uix.recycleview import RecycleView
+from kivy.base import Builder
 
 from ui.edit_route_screen import *
 from wiggles_work_app import *
+from ui.route_list_row_view import RouteListRowView
 
+KV = '''
 
+RouteListRecycleView:
+    data: []
+    viewclass: 'RouteListRowView'
+    RecycleBoxLayout:
+        default_size: None, dp(56)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+        multiselect: False
+        touch_multiselect: False
+
+'''
+
+class RouteListRecycleView(RecycleView):
+    def __init__(self, **kwargs):
+        super(RouteListRecycleView, self).__init__(**kwargs)
+
+        #self.viewclass = 'RouteListRowView'
+        #self.data = routes
 
 class RouteListScreen(GridLayout):
 
@@ -33,6 +57,11 @@ class RouteListScreen(GridLayout):
         self.wiggles_work_app = wiggles_work_app
         # self.edit_route_view = None
         self.top_level_layout = GridLayout(rows=3)
+        #self.recycleView = RouteListRecycleView(self.wiggles_work_app.data_repository.master_list.routes)
+        self.recycleView = Builder.load_string(KV)
+        all_routes = self.wiggles_work_app.data_repository.master_list.routes
+        self.recycleView.data = [{'route': r} for r in all_routes]
+        self.top_level_layout.add_widget(self.recycleView)
         self.add_button = Button(text="Add Route!",
                                  font_size="20sp",
                                  background_color=(66 / 255, 135 / 255, 245 / 255, 1),

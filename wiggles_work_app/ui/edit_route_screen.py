@@ -62,6 +62,7 @@ class EditRouteScreen(GridLayout):
         route_to_save.name = self.name_field.field.text
         route_to_save.grade = self.grade_field.field.text
         route_to_save.crag = self.crag_field.field.text
+
         if self.mode is RouteScreenMode.ADD:
             self.wiggles_work_app.data_repository.add_route(route_to_save)
         else:

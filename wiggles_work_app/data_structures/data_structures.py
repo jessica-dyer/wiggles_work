@@ -31,7 +31,7 @@ class Route(JsonMappable):
     def construct_from_dict(cls, dictionary):
         id = None
         if "id" in dictionary.keys():
-            id = UUID(dictionary["id"])
+            id = uuid.UUID(dictionary["id"])
         else:
             id = uuid.uuid4()
         route = Route(id)
