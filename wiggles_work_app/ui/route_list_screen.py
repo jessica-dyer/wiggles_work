@@ -24,7 +24,7 @@ from kivy.uix.textinput import TextInput
 from ui.edit_route_view import *
 
 
-class RouteListWindow(App):
+class RouteListScreen(App):
 
     def __init__(self):
         super().__init__()
