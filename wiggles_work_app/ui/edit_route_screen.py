@@ -23,10 +23,12 @@ from kivy.uix.textinput import TextInput
 from ui.form_field import *
 
 
-class EditRouteView(GridLayout):
+class EditRouteScreen(GridLayout):
 
-    def __init__(self):
+    def __init__(self, wiggles_work_app, route):
         super().__init__(rows=4)
+        self.route = route #If route is 'None' it is an add not an edit
+        self.wiggles_work_app = wiggles_work_app
         self.name_field = FormField("Route Name:", "")
         self.grade_field = FormField("Grade:", "")
         self.crag_field = FormField("Crag:", "")

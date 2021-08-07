@@ -21,13 +21,16 @@ from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 
-from ui.edit_route_view import *
+from ui.edit_route_screen import *
+from wiggles_work_app import *
+
 
 
 class RouteListScreen(GridLayout):
 
-    def __init__(self):
+    def __init__(self, wiggles_work_app):
         super().__init__(rows = 3)
+        self.wiggles_work_app = wiggles_work_app
         # self.edit_route_view = None
         self.top_level_layout = GridLayout(rows=3)
         self.add_button = Button(text="Add Route!",
@@ -41,11 +44,6 @@ class RouteListScreen(GridLayout):
         self.top_level_layout.add_widget(self.add_button)
         self.add_widget(self.top_level_layout)
 
-
-    def onClick(self, something):
-        print("Got a click!")
-        # if self.edit_route_view != None:
-        #     self.top_level_layout.remove_widget(self.edit_route_view)
-
-        # self.edit_route_view = EditRouteView()
-        # self.top_level_layout.add_widget(self.edit_route_view)
+    def onClick(self, button):
+        add_route_screen = EditRouteScreen(self.wiggles_work_app, route=None)
+        self.wiggles_work_app.window.set_view(add_route_screen)

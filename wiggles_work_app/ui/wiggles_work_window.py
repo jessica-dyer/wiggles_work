@@ -21,19 +21,21 @@ from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 
-from ui.edit_route_view import *
+from ui.edit_route_screen import *
 
 class WigglesWorkWindow(App):
 
     def __init__(self, initial_view):
         super().__init__()
+        self.container_layout = GridLayout(rows=1)
+        self.container_layout.add_widget(initial_view)
         self.current_view = initial_view
 
     def build(self):
-        return self.current_view
+        return self.container_layout
 
     def set_view(self, new_view):
-        self.remove_widget(self.current_view)
-        self.add_widget(new_view)
+        self.container_layout.remove_widget(self.current_view)
+        self.container_layout.add_widget(new_view)
         self.current_view = new_view
 
