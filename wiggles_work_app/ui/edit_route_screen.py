@@ -23,6 +23,7 @@ from kivy.uix.textinput import TextInput
 from ui.form_field import *
 from enum import Enum
 from data_structures.data_structures import *
+from ui.delete_confirmation_screen import *
 
 
 class RouteScreenMode(Enum):
@@ -81,4 +82,5 @@ class EditRouteScreen(GridLayout):
         self.wiggles_work_app.navigate_to_route_list()
 
     def on_click_delete(self, button):
-        print("Delete this route")
+        foo = DeleteConfirmationScreen(self.route.name, self, None)
+        self.wiggles_work_app.window.set_view(foo)
