@@ -13,3 +13,8 @@ class DataRepository:
     def update_route(self, modified_route):
         self.master_list.update_route(modified_route)
         self.master_list.export_to_file()
+
+    def delete_route(self, route):
+        self.master_list.delete_route(route)
+        self.master_list.export_to_file()
+

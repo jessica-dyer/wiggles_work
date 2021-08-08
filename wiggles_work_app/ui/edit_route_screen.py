@@ -82,5 +82,9 @@ class EditRouteScreen(GridLayout):
         self.wiggles_work_app.navigate_to_route_list()
 
     def on_click_delete(self, button):
-        foo = DeleteConfirmationScreen(self.wiggles_work_app, self.route.name, self, None)
+        foo = DeleteConfirmationScreen(self.wiggles_work_app, self.route.name, self, self.on_delete_confirmed)
         self.wiggles_work_app.window.set_view(foo)
+
+    def on_delete_confirmed(self):
+        self.wiggles_work_app.data_repository.delete_route(self.route)
+        self.wiggles_work_app.navigate_to_route_list()

@@ -23,7 +23,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 
 class DeleteConfirmationScreen(GridLayout):
-    
+
     def __init__(self, wiggles_work_app, name, back_screen, delete_action):
         super().__init__(rows=2)
         self.wiggles_work_app = wiggles_work_app
@@ -40,6 +40,10 @@ class DeleteConfirmationScreen(GridLayout):
         self.button_container.add_widget(self.no_button)
         self.button_container.add_widget(self.yes_button)
         self.no_button.bind(on_press=self.on_click_no)
+        self.yes_button.bind(on_press=self.on_click_yes)
 
     def on_click_no(self, button):
         self.wiggles_work_app.window.set_view(self.back_screen)
+
+    def on_click_yes(self, button):
+        self.delete_action()

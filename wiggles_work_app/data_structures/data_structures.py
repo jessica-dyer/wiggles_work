@@ -66,6 +66,9 @@ class RouteList(JsonMappable):
         existing_index = self.routes.index(modified_route)
         self.routes[existing_index] = modified_route
 
+    def delete_route(self, route):
+        self.routes.remove(route)
+
     def pretty_print_all(self):
         for r in self.routes:
             r.pretty_print()
