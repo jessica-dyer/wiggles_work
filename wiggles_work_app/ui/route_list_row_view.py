@@ -11,7 +11,7 @@ from kivy.uix.widget import Widget
 class RouteListRowView(RecycleDataViewBehavior, GridLayout):
     wiggles_work_app = None
     index = None
-    selected = BooleanProperty(False)
+    selected = False
     selectable = BooleanProperty(True)
 
     def __init__(self):
@@ -36,15 +36,16 @@ class RouteListRowView(RecycleDataViewBehavior, GridLayout):
 
     def on_touch_down(self, touch):
         if self.collide_point(*touch.pos) and self.selectable:
+            self.selected = True
             with self.backgroundView.canvas:
-                Color(1,1,1,0.75)   # color for highlight on click
+                Color(1, 1, 1, 0.75)  # color for highlight on click
                 Rectangle(pos=self.pos, size=self.size)
 
     def on_touch_up(self, touch):
-        if self.collide_point(*touch.pos) and self.selectable:
+        if self.collide_point(*touch.pos) and self.selected:
             self.onRowClicked()
-            self.backgroundView.canvas.clear()
-
+        self.backgroundView.canvas.clear()
+        self.selected = False
 
     def onRowClicked(self):
         print("Navigating to route " + self.route.name)
