@@ -31,8 +31,9 @@ class DeleteConfirmationScreen(GridLayout):
     no_button = Button(text="No")
     yes_button = Button(text="Yes")
 
-    def __init__(self, name, back_screen, delete_action):
+    def __init__(self, wiggles_work_app, name, back_screen, delete_action):
         super().__init__(rows=2)
+        self.wiggles_work_app = wiggles_work_app
         self.name = name
         self.back_screen = back_screen
         self.delete_action = delete_action
