@@ -26,20 +26,27 @@ from kivy.base import Builder
 from ui.edit_route_screen import *
 from wiggles_work_app import *
 from ui.route_list_row_view import RouteListRowView
+from kivy.uix.recycleboxlayout import RecycleBoxLayout
+from kivy.uix.behaviors import FocusBehavior
+from kivy.uix.recycleview.layout import LayoutSelectionBehavior
+
+class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior,
+                                 RecycleBoxLayout):
+    ''' Adds selection and focus behaviour to the view. '''
 
 KV = '''
 
 RouteListRecycleView:
     data: []
     viewclass: 'RouteListRowView'
-    RecycleBoxLayout:
+    SelectableRecycleBoxLayout:
         default_size: None, dp(56)
         default_size_hint: 1, None
         size_hint_y: None
         height: self.minimum_height
         orientation: 'vertical'
-        multiselect: False
-        touch_multiselect: False
+        multiselect: True
+        touch_multiselect: True
 
 '''
 
