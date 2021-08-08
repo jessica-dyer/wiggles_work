@@ -46,12 +46,16 @@ class EditRouteScreen(GridLayout):
         self.add_widget(self.name_field)
         self.add_widget(self.grade_field)
         self.add_widget(self.crag_field)
-        self.button_container = GridLayout(cols=2)
+        self.button_container = GridLayout(cols=3)
         self.save_button = Button(text="Save")
         self.cancel_button = Button(text="Cancel")
+        self.delete_button = Button(text="Delete route")
         self.save_button.bind(on_press=self.on_click_save)
         self.cancel_button.bind(on_press=self.on_click_cancel)
+        self.delete_button.bind(on_press=self.on_click_delete)
         self.button_container.add_widget(self.cancel_button)
+        if self.mode == RouteScreenMode.EDIT:
+            self.button_container.add_widget(self.delete_button)
         self.button_container.add_widget(self.save_button)
         self.add_widget(self.button_container)
         if self.route is not None:
@@ -75,3 +79,6 @@ class EditRouteScreen(GridLayout):
 
     def on_click_cancel(self, button):
         self.wiggles_work_app.navigate_to_route_list()
+
+    def on_click_delete(self, button):
+        print("Delete this route")
