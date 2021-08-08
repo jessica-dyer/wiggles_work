@@ -2,8 +2,10 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.properties import BooleanProperty
+from kivy.graphics import Color, Rectangle
 
 class RouteListRowView(RecycleDataViewBehavior, GridLayout):
+    wiggles_work_app = None
     index = None
     selected = BooleanProperty(False)
     selectable = BooleanProperty(True)
@@ -16,24 +18,25 @@ class RouteListRowView(RecycleDataViewBehavior, GridLayout):
         self.add_widget(self.label)
 
     def refresh_view_attrs(self, rv, index, data_item):
+        self.wiggles_work_app = rv.wiggles_work_app
+        self.index = index
         self.route = data_item["route"]
         self.label.text = self.route.name
 
     def on_touch_down(self, touch):
-        print("how about this?")
-
-    def apply_selection(self, rv, index, is_selected):
-        print("what does this do?")
-        if is_selected:
-            print("I'm selected!  " + self.route.name)
+        if self.collide_point(*touch.pos) and self.selectable:
+            with self.canvas:
+                Color(1,1,1,0.75)   # color for highlight on click
+                Rectangle(pos=self.pos, size=self.size)
 
     def on_touch_up(self, touch):
-        print("touch up in  " + self.route.name)
-
-    def on_touch_down(self, touch):
-        ''' Add selection on touch down '''
-        if super(GridLayout, self).on_touch_down(touch):
-            return True
         if self.collide_point(*touch.pos) and self.selectable:
-            print("here for  " + self.route.name)
-            return self.parent.select_with_touch(self.index, touch)
+            self.onRowClicked()
+            # with self.canvas:
+            #     Color(0,0,0,1)      # color to revert too after highlight goes away
+            #     Rectangle(pos=self.pos, size=self.size)
+
+        return super(GridLayout, self).on_touch_up(touch)
+
+    def onRowClicked(self):
+        self.wiggles_work_app.navigate_to_edit_route(self.route)

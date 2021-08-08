@@ -34,7 +34,7 @@ class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior,
                                  RecycleBoxLayout):
     ''' Adds selection and focus behaviour to the view. '''
 
-KV = '''
+RouteListRecycleView_in_Kivy_language = '''
 
 RouteListRecycleView:
     data: []
@@ -53,21 +53,23 @@ RouteListRecycleView:
 class RouteListRecycleView(RecycleView):
     def __init__(self, **kwargs):
         super(RouteListRecycleView, self).__init__(**kwargs)
+        self.wiggles_work_app = None
 
-        #self.viewclass = 'RouteListRowView'
-        #self.data = routes
+    def setWigglesWorkApp(self, wiggles_work_app):
+        self.wiggles_work_app = wiggles_work_app
+        all_routes = self.wiggles_work_app.data_repository.master_list.routes
+        # if you want to sort routes for the list view, sort them in here
+        self.data = [{'route': r} for r in all_routes]
+
 
 class RouteListScreen(GridLayout):
 
     def __init__(self, wiggles_work_app):
         super().__init__(rows = 3)
         self.wiggles_work_app = wiggles_work_app
-        # self.edit_route_view = None
         self.top_level_layout = GridLayout(rows=3)
-        #self.recycleView = RouteListRecycleView(self.wiggles_work_app.data_repository.master_list.routes)
-        self.recycleView = Builder.load_string(KV)
-        all_routes = self.wiggles_work_app.data_repository.master_list.routes
-        self.recycleView.data = [{'route': r} for r in all_routes]
+        self.recycleView = Builder.load_string(RouteListRecycleView_in_Kivy_language)
+        self.recycleView.setWigglesWorkApp(self.wiggles_work_app)
         self.top_level_layout.add_widget(self.recycleView)
         self.add_button = Button(text="Add Route!",
                                  font_size="20sp",
