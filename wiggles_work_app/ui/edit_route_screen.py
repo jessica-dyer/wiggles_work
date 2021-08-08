@@ -54,6 +54,10 @@ class EditRouteScreen(GridLayout):
         self.button_container.add_widget(self.cancel_button)
         self.button_container.add_widget(self.save_button)
         self.add_widget(self.button_container)
+        if self.route is not None:
+            self.name_field.field.text = self.route.name
+            self.grade_field.field.text = self.route.grade
+            self.crag_field.field.text = self.route.crag
 
     def on_click_save(self, button):
         route_to_save = self.route

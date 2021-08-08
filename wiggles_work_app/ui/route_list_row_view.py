@@ -21,15 +21,17 @@ class RouteListRowView(RecycleDataViewBehavior, GridLayout):
         self.backgroundView = Widget()
         self.add_widget(self.backgroundView, 1)
         self.route = None
-        self.label = Label(text="")
-        self.grid_layout.add_widget(self.label)
-
+        self.name_label = Label(text="")
+        self.grade_label = Label(text="")
+        self.grid_layout.add_widget(self.name_label)
+        self.grid_layout.add_widget(self.grade_label)
 
     def refresh_view_attrs(self, rv, index, data_item):
         self.wiggles_work_app = rv.wiggles_work_app
         self.index = index
         self.route = data_item["route"]
-        self.label.text = self.route.name
+        self.name_label.text = self.route.name
+        self.grade_label.text = self.route.grade
         self.size = self.grid_layout.size
 
     def on_touch_down(self, touch):
