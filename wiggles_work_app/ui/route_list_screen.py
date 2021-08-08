@@ -57,6 +57,9 @@ class RouteListRecycleView(RecycleView):
 
     def setWigglesWorkApp(self, wiggles_work_app):
         self.wiggles_work_app = wiggles_work_app
+        self.refreshData()
+
+    def refreshData(self):
         all_routes = self.wiggles_work_app.data_repository.master_list.routes
         # if you want to sort routes for the list view, sort them in here
         self.data = [{'route': r} for r in all_routes]
@@ -85,3 +88,6 @@ class RouteListScreen(GridLayout):
     def onClick(self, button):
         add_route_screen = EditRouteScreen(self.wiggles_work_app, route=None)
         self.wiggles_work_app.window.set_view(add_route_screen)
+
+    def refreshList(self):
+        self.recycleView.refreshData()

@@ -14,6 +14,7 @@ class WigglesWorkApp:
         self.window.run()
 
     def navigate_to_route_list(self):
+        self.route_list_screen.refreshList()
         self.window.set_view(self.route_list_screen)
 
     def navigate_to_edit_route(self, route):
