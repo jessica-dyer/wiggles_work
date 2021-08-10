@@ -5,6 +5,7 @@ from kivy.uix.label import Label
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.properties import BooleanProperty
 from kivy.graphics import Color, Rectangle
+from kivy.uix.stacklayout import StackLayout
 from kivy.uix.widget import Widget
 
 
@@ -16,15 +17,21 @@ class RouteListRowView(RecycleDataViewBehavior, GridLayout):
 
     def __init__(self):
         super().__init__(cols=1)
-        self.grid_layout = GridLayout(cols=5)
-        self.add_widget(self.grid_layout, index=0)
+        self.row_layout = GridLayout(rows=1)
+        self.add_widget(self.row_layout, index=0)
         self.backgroundView = Widget()
         self.add_widget(self.backgroundView, 1)
         self.route = None
         self.name_label = Label(text="")
         self.grade_label = Label(text="")
-        self.grid_layout.add_widget(self.name_label)
-        self.grid_layout.add_widget(self.grade_label)
+        # self.grade_label.size = (100, 50)
+        # self.name_label.size = (200, 50)
+        self.row_layout.add_widget(self.grade_label)
+        self.row_layout.add_widget(self.name_label)
+        # with self.grade_label.canvas:
+        #     Color(1, 0, 0, 0.75)  # color for highlight on click
+        #     Rectangle(pos=self.grade_label.pos, size=self.grade_label.size)
+
 
     def refresh_view_attrs(self, rv, index, data_item):
         self.wiggles_work_app = rv.wiggles_work_app
@@ -32,7 +39,7 @@ class RouteListRowView(RecycleDataViewBehavior, GridLayout):
         self.route = data_item["route"]
         self.name_label.text = self.route.name
         self.grade_label.text = self.route.grade
-        self.size = self.grid_layout.size
+        self.size = self.row_layout.size
 
     def on_touch_down(self, touch):
         if self.collide_point(*touch.pos) and self.selectable:
