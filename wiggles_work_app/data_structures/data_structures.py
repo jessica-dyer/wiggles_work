@@ -1,12 +1,6 @@
 import json
-from abc import ABC, abstractmethod
 import uuid
-
-
-class JsonMappable(ABC):
-    @abstractmethod
-    def to_dict(self):
-        pass
+from data_structures.json_mappable import *
 
 
 class Route(JsonMappable):
@@ -19,7 +13,7 @@ class Route(JsonMappable):
     def __eq__(self, other):
         return self.id == other.id
 
-    def to_dict(self):
+    def to_dict_or_list(self):
         dictionary = {}
         dictionary["id"] = str(self.id)
         dictionary["name"] = self.name
@@ -39,6 +33,7 @@ class Route(JsonMappable):
         route.grade = dictionary["grade"]
         route.crag = dictionary["crag"]
         return route
+
 
 
     def pretty_print(self):

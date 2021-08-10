@@ -60,7 +60,7 @@ class RouteListRecycleView(RecycleView):
         self.refreshData()
 
     def refreshData(self):
-        all_routes = self.wiggles_work_app.data_repository.master_list.routes
+        all_routes = self.wiggles_work_app.data_repository.routes
         # if you want to sort routes for the list view, sort them in here
         self.data = [{'route': r} for r in all_routes]
 
