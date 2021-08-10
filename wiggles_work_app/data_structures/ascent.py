@@ -1,4 +1,4 @@
-from data_structures.data_structures import *
+from data_structures.json_mappable import *
 from enum import Enum
 
 class AscentType(Enum):

@@ -7,5 +7,23 @@ class Climber(JsonMappable):
         self.name = ""
         self.ascents = []
 
+    def to_dict_or_list(self):
+        dictionary = {}
+        dictionary["id"] = str(self.id)
+        dictionary["name"] = self.name
+        dictionary["ascents"] = JsonMappable.serialize_list(self.ascents)
+        return dictionary
+
+    @classmethod
+    def construct_from_dict(cls, dictionary):
+        id = None
+        if "id" in dictionary.keys():
+            id = uuid.UUID(dictionary["id"])
+        else:
+            id = uuid.uuid4()
+        climber = Climber(id)
+        climber.name = dictionary["name"]
+        return climber
+
     def add_ascent(self, ascent):
         self.ascents.append(ascent)

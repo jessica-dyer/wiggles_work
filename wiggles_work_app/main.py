@@ -1,15 +1,18 @@
 from data_structures.data_structures import *
 from wiggles_work_app import WigglesWorkApp
+from data_structures.climber import *
 
+def create_hard_coded_data(app):
+    lw = Climber()
+    lw.name = "Little Wiggles"
+    app.data_repository.add_climber(lw)
 
 def test():
-    # x = Route("Outer Space", "5.9+", "Snow Creek")
-    # master_list = RouteList()
-    # # master_list.add_route(x)
-    # master_list.import_from_file()
-    # master_list.pretty_print_all()
-    # master_list.export_to_file()
     app = WigglesWorkApp()
+    if len(app.data_repository.climbers) == 0:
+        create_hard_coded_data(app)
+
+
     app.start()
 
 test()

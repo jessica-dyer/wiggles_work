@@ -2,6 +2,7 @@ from data_structures.data_structures import *
 from data_structures.route_list import *
 from data_structures.json_mappable import *
 from data_structures.data_structures import *
+from data_structures.climber import *
 
 class DataRepository(JsonMappable):
 
@@ -29,6 +30,7 @@ class DataRepository(JsonMappable):
     def to_dict_or_list(self):
         dictionary = {}
         dictionary["routes"] = JsonMappable.serialize_list(self.routes)
+        dictionary["climbers"] = JsonMappable.serialize_list(self.climbers)
         return dictionary
 
     def export_to_file(self, filename='saved_routes.json'):
@@ -39,6 +41,10 @@ class DataRepository(JsonMappable):
     def import_from_file(self, filename='saved_routes.json'):
         with open(filename, 'r', encoding='utf-8') as f:
             dictionary = json.load(f)
-            route_dictionaries = dictionary["routes"]
-            self.routes = JsonMappable.rehydrate_list(route_dictionaries, Route)
+            if "routes" in dictionary.keys():
+                route_dictionaries = dictionary["routes"]
+                self.routes = JsonMappable.rehydrate_list(route_dictionaries, Route)
+            if "climbers" in dictionary.keys():
+                climber_dictionaries = dictionary["climbers"]
+                self.climbers = JsonMappable.rehydrate_list(climber_dictionaries, Climber)
 
