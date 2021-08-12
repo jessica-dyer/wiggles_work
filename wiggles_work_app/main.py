@@ -20,7 +20,6 @@ def test():
         create_hard_coded_data(app)
     lw = app.data_repository.climbers[0]
     n = lw.ascents[0].route.name
-    print(n)
     app.start()
 
 test()

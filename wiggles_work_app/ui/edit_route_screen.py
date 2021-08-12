@@ -24,6 +24,8 @@ from ui.form_field import *
 from enum import Enum
 from data_structures.data_structures import *
 from ui.delete_confirmation_screen import *
+from kivy.uix.widget import Widget
+from kivy.uix.boxlayout import BoxLayout
 
 
 class RouteScreenMode(Enum):
@@ -31,30 +33,44 @@ class RouteScreenMode(Enum):
     EDIT = 2
 
 
-class EditRouteScreen(GridLayout):
+class EditRouteScreen(BoxLayout):
 
     def __init__(self, wiggles_work_app, route):
-        super().__init__(rows=4)
+        super().__init__(orientation='vertical')
+
         if route is None:
             self.mode = RouteScreenMode.ADD
         else:
             self.mode = RouteScreenMode.EDIT
         self.route = route  # If route is 'None' it is an add not an edit
         self.wiggles_work_app = wiggles_work_app
+        self.form_field_grid_layout = GridLayout(cols=1,
+                                                 size_hint=(1, 30))
+
         self.name_field = FormField("Route Name:", "")
         self.grade_field = FormField("Grade:", "")
         self.crag_field = FormField("Crag:", "")
-        self.add_widget(self.name_field)
-        self.add_widget(self.grade_field)
-        self.add_widget(self.crag_field)
-        self.button_container = GridLayout(cols=3)
+
+        self.add_widget(self.form_field_grid_layout)
+        self.form_field_grid_layout.add_widget(self.name_field)
+        self.form_field_grid_layout.add_widget(self.grade_field)
+        self.form_field_grid_layout.add_widget(self.crag_field)
+
+        self.ascent_list_view = Button(background_color=(0, 0, 1, 1),
+                                       size_hint=(1, 60))
+        self.add_widget(self.ascent_list_view)
+
+        self.button_container = GridLayout(cols=3,
+                                           size_hint=(1, 10))
         self.save_button = Button(text="Save")
         self.cancel_button = Button(text="Cancel")
         self.delete_button = Button(text="Delete route")
+
         self.save_button.bind(on_press=self.on_click_save)
         self.cancel_button.bind(on_press=self.on_click_cancel)
         self.delete_button.bind(on_press=self.on_click_delete)
         self.button_container.add_widget(self.cancel_button)
+
         if self.mode == RouteScreenMode.EDIT:
             self.button_container.add_widget(self.delete_button)
         self.button_container.add_widget(self.save_button)
