@@ -1,5 +1,9 @@
 from data_structures.json_mappable import *
 from enum import Enum
+import json
+import uuid
+
+wiggles_work_app = None
 
 class AscentType(Enum):
     TOP_ROPE = 1
@@ -11,4 +15,15 @@ class Ascent(JsonMappable):
         self.ascent_type = None
         self.date = None
         self.notes = ""
-        self.route = None
+        self.route_id = None
+
+    # getter
+    def get_route(self):
+        pass
+
+    # setter
+    def set_route(self):
+        pass
+
+    def to_dict_or_list(self):
+        return {}

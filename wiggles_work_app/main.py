@@ -1,6 +1,7 @@
 from data_structures.data_structures import *
 from wiggles_work_app import WigglesWorkApp
 from data_structures.climber import *
+from data_structures import ascent
 
 def create_hard_coded_data(app):
     lw = Climber()
@@ -9,6 +10,7 @@ def create_hard_coded_data(app):
 
 def test():
     app = WigglesWorkApp()
+    ascent.wiggles_work_app = app
     if len(app.data_repository.climbers) == 0:
         create_hard_coded_data(app)
 
