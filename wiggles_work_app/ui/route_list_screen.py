@@ -30,9 +30,11 @@ from kivy.uix.recycleboxlayout import RecycleBoxLayout
 from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 
+
 class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior,
                                  RecycleBoxLayout):
     ''' Adds selection and focus behaviour to the view. '''
+
 
 RouteListRecycleView_in_Kivy_language = '''
 
@@ -49,6 +51,7 @@ RouteListRecycleView:
         touch_multiselect: True
 
 '''
+
 
 class RouteListRecycleView(RecycleView):
     def __init__(self, **kwargs):
@@ -68,7 +71,7 @@ class RouteListRecycleView(RecycleView):
 class RouteListScreen(GridLayout):
 
     def __init__(self, wiggles_work_app):
-        super().__init__(rows = 3)
+        super().__init__(rows=3)
         self.wiggles_work_app = wiggles_work_app
         self.top_level_layout = GridLayout(rows=3)
         self.recycleView = Builder.load_string(RouteListRecycleView_in_Kivy_language)

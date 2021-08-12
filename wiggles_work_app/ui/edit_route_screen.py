@@ -26,6 +26,7 @@ from data_structures.data_structures import *
 from ui.delete_confirmation_screen import *
 from kivy.uix.widget import Widget
 from kivy.uix.boxlayout import BoxLayout
+from ui.ascent_list_view import *
 
 
 class RouteScreenMode(Enum):
@@ -56,9 +57,11 @@ class EditRouteScreen(BoxLayout):
         self.form_field_grid_layout.add_widget(self.grade_field)
         self.form_field_grid_layout.add_widget(self.crag_field)
 
-        self.ascent_list_view = Button(background_color=(0, 0, 1, 1),
-                                       size_hint=(1, 60))
+        self.current_climber = self.wiggles_work_app.data_repository.climbers[0]
+        self.ascent_list_view = AscentListView(size_hint=(1, 60))
+        self.ascent_list_view.set_climber(self.wiggles_work_app, self.current_climber)
         self.add_widget(self.ascent_list_view)
+
 
         self.button_container = GridLayout(cols=3,
                                            size_hint=(1, 10))
