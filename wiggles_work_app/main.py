@@ -14,7 +14,6 @@ def test():
     if len(app.data_repository.climbers) == 0:
         create_hard_coded_data(app)
 
-
     app.start()
 
 test()

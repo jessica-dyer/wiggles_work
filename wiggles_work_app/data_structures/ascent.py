@@ -19,11 +19,38 @@ class Ascent(JsonMappable):
 
     # getter
     def get_route(self):
-        pass
+        if self._cached_route is None:
+            self._cached_route = wiggles_work_app.data_repository.get_route(self.route_id)
+
+        return self._cached_route
 
     # setter
-    def set_route(self):
-        pass
+    def set_route(self, route_object):
+        self._cached_route = route_object
+        self.route_id = route_object.id
+
+    # creating a property object
+    route = property(get_route, set_route)
 
     def to_dict_or_list(self):
-        return {}
+        dictionary = {}
+        dictionary["id"] = str(self.id)
+        dictionary["ascent_type"] = self.ascent_type
+        dictionary["dates"] = self.dates
+        dictionary["notes"] = self.notes
+        dictionary["route_id"] = str(self.route_id)
+        return dictionary
+
+    @classmethod
+    def construct_from_dict(cls, dictionary):
+        id = None
+        if "id" in dictionary.keys():
+            id = uuid.UUID(dictionary["id"])
+        else:
+            id = uuid.uuid4()
+        ascent = Ascent(id)
+        ascent.ascent_type = dictionary["ascent_type"]
+        ascent.dates = dictionary["dates"]
+        ascent.notes = dictionary["notes"]
+        ascent.route_id = uuid.UUID(dictionary["route_id"])
+        return ascent
