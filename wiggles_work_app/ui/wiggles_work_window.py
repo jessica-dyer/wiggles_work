@@ -20,10 +20,13 @@ from kivy.uix.button import Button
 # then adds widgets to the resulting “cells”.
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
+from kivymd.app import MDApp
+from kivymd.uix.label import MDLabel
+
 
 from ui.edit_route_screen import *
 
-class WigglesWorkWindow(App):
+class WigglesWorkWindow(MDApp):
 
     def __init__(self, initial_view):
         super().__init__()

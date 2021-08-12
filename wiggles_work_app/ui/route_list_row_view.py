@@ -1,3 +1,4 @@
+import kivy
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
@@ -7,6 +8,7 @@ from kivy.properties import BooleanProperty
 from kivy.graphics import Color, Rectangle
 from kivy.uix.stacklayout import StackLayout
 from kivy.uix.widget import Widget
+from ui.color import WWColors
 
 
 class RouteListRowView(RecycleDataViewBehavior, GridLayout):
@@ -22,7 +24,8 @@ class RouteListRowView(RecycleDataViewBehavior, GridLayout):
         self.backgroundView = Widget()
         self.add_widget(self.backgroundView, 1)
         self.route = None
-        self.name_label = Label(text="")
+        self.name_label = Label(text="",
+                                color=(0, 0, 0, 1))
         self.grade_label = Label(text="")
         # self.grade_label.size = (100, 50)
         # self.name_label.size = (200, 50)
@@ -45,7 +48,9 @@ class RouteListRowView(RecycleDataViewBehavior, GridLayout):
         if self.collide_point(*touch.pos) and self.selectable:
             self.selected = True
             with self.backgroundView.canvas:
-                Color(1, 1, 1, 0.75)  # color for highlight on click
+                #Color(0,1,0,1)
+                #WWColors.ROW_CLICK_HIGHLIGHT_STUPID  # color for highlight on click
+                self.backgroundView.canvas.add(WWColors.ROW_CLICK_HIGHLIGHT)
                 Rectangle(pos=self.pos, size=self.size)
 
     def on_touch_up(self, touch):
