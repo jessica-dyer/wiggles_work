@@ -1,4 +1,5 @@
 from data_structures.data_structures import *
+from data_structures.ascent import *
 
 class Climber(JsonMappable):
 
@@ -23,6 +24,8 @@ class Climber(JsonMappable):
             id = uuid.uuid4()
         climber = Climber(id)
         climber.name = dictionary["name"]
+        ascent_dictionaries = dictionary["ascents"]
+        climber.ascents = JsonMappable.rehydrate_list(ascent_dictionaries, Ascent)
         return climber
 
     def add_ascent(self, ascent):

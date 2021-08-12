@@ -25,7 +25,8 @@ class DataRepository(JsonMappable):
         self.export_to_file()
 
     def get_route(self, route_id):
-        id_as_uuid = uuid.UUID(route_id)
+        # id_as_uuid = uuid.UUID(route_id)
+        id_as_uuid = route_id
         matches = [r for r in self.routes if r.id == id_as_uuid]
         if len(matches) == 0:
             return None

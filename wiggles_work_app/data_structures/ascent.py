@@ -11,6 +11,7 @@ class AscentType(Enum):
 
 class Ascent(JsonMappable):
     def __init__(self, id=uuid.uuid4()):
+        self._cached_route = None
         self.id = id
         self.ascent_type = None
         self.date = None
@@ -36,7 +37,7 @@ class Ascent(JsonMappable):
         dictionary = {}
         dictionary["id"] = str(self.id)
         dictionary["ascent_type"] = self.ascent_type
-        dictionary["dates"] = self.dates
+        dictionary["date"] = self.date
         dictionary["notes"] = self.notes
         dictionary["route_id"] = str(self.route_id)
         return dictionary
@@ -50,7 +51,7 @@ class Ascent(JsonMappable):
             id = uuid.uuid4()
         ascent = Ascent(id)
         ascent.ascent_type = dictionary["ascent_type"]
-        ascent.dates = dictionary["dates"]
+        ascent.date = dictionary["date"]
         ascent.notes = dictionary["notes"]
         ascent.route_id = uuid.UUID(dictionary["route_id"])
         return ascent
