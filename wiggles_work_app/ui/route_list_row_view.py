@@ -9,7 +9,6 @@ from kivy.graphics import Color, Rectangle
 from kivy.uix.stacklayout import StackLayout
 from kivy.uix.widget import Widget
 from ui.color import WWColors
-from kivymd.app import MDApp
 from kivymd.uix.label import MDLabel
 
 

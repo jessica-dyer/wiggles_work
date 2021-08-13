@@ -1,23 +1,6 @@
-# import kivy module
 import kivy
 
-# this restrict the kivy version i.e
-# below this kivy version you cannot
-# use the app or software
 kivy.require("1.9.1")
-
-# base Class of your App inherits from the App class.
-# app:always refers to the instance of your application
-from kivy.app import App
-
-# creates the button in kivy
-# if not imported shows the error
-from kivy.uix.button import Button
-
-# The GridLayout arranges children in a matrix.
-# It takes the available space and
-# divides it into columns and rows,
-# then adds widgets to the resulting “cells”.
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 from ui.form_field import *
@@ -27,6 +10,10 @@ from ui.delete_confirmation_screen import *
 from kivy.uix.widget import Widget
 from kivy.uix.boxlayout import BoxLayout
 from ui.ascent_list_view import *
+from kivymd.uix.label import MDLabel
+from kivymd.uix.button import MDRectangleFlatButton
+from kivy.uix.floatlayout import FloatLayout
+from kivy.graphics import Color, Rectangle
 
 
 class RouteScreenMode(Enum):
@@ -47,7 +34,7 @@ class EditRouteScreen(BoxLayout):
         self.wiggles_work_app = wiggles_work_app
         self.form_field_grid_layout = GridLayout(cols=1,
                                                  size_hint=(1, 30))
-
+        # NEED TO UPDATE THESE FORM FIELDS TO KIVYMD
         self.name_field = FormField("Route Name:", "")
         self.grade_field = FormField("Grade:", "")
         self.crag_field = FormField("Crag:", "")
@@ -62,21 +49,40 @@ class EditRouteScreen(BoxLayout):
         self.ascent_list_view.set_climber(self.wiggles_work_app, self.current_climber)
         self.add_widget(self.ascent_list_view)
 
-        self.button_container = GridLayout(cols=3,
-                                           size_hint=(1, 10))
-        self.save_button = Button(text="Save")
-        self.cancel_button = Button(text="Cancel")
-        self.delete_button = Button(text="Delete route")
+        # BUTTON CONTAINERS TO HOLD THE BUTTONS ON THE BOTTOM OF THE SCREEN
+        self.cancel_button = MDRectangleFlatButton(text="Cancel",
+                                                   pos_hint={'center_x': 0.5, 'center_y': 0.5})
+        self.delete_button = MDRectangleFlatButton(text="Delete route",
+                                                   pos_hint={'center_x': 0.5, 'center_y': 0.5})
+        self.save_button = MDRectangleFlatButton(text="Save",
+                                                 pos_hint={'center_x': 0.5, 'center_y': 0.5})
 
         self.save_button.bind(on_press=self.on_click_save)
         self.cancel_button.bind(on_press=self.on_click_cancel)
         self.delete_button.bind(on_press=self.on_click_delete)
-        self.button_container.add_widget(self.cancel_button)
+        # self.button_container.add_widget(self.cancel_button)
 
+        self.button_outer_container = FloatLayout(size_hint=(1, 10))
+        button_spacing = 50
+        width_needed_for_buttons = self.cancel_button.width * 3 + button_spacing*2
+        self.button_inner_container = BoxLayout(pos_hint={'center_x': 0.5, 'center_y': 0.5},
+                                                width=width_needed_for_buttons,
+                                                size_hint=(None, None),
+                                                spacing=button_spacing)
+
+        self.button_inner_container.add_widget(self.cancel_button)
         if self.mode == RouteScreenMode.EDIT:
-            self.button_container.add_widget(self.delete_button)
-        self.button_container.add_widget(self.save_button)
-        self.add_widget(self.button_container)
+            self.button_inner_container.add_widget(self.delete_button)
+        self.button_inner_container.add_widget(self.save_button)
+
+        self.button_outer_container.add_widget(self.button_inner_container)
+        self.add_widget(self.button_outer_container)
+
+        with self.form_field_grid_layout.canvas.after:
+            Color(0, 1, 0, 1)
+            Rectangle(pos=self.form_field_grid_layout.pos, size=self.form_field_grid_layout.size)
+
+
         if self.route is not None:
             self.name_field.field.text = self.route.name
             self.grade_field.field.text = self.route.grade

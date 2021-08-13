@@ -30,6 +30,7 @@ from kivy.uix.recycleboxlayout import RecycleBoxLayout
 from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 from kivymd.uix.button import MDRectangleFlatButton
+from kivy.uix.floatlayout import FloatLayout
 
 
 class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior,
@@ -78,16 +79,12 @@ class RouteListScreen(GridLayout):
         self.recycleView = Builder.load_string(RouteListRecycleView_in_Kivy_language)
         self.recycleView.setWigglesWorkApp(self.wiggles_work_app)
         self.top_level_layout.add_widget(self.recycleView)
-        self.add_button = MDRectangleFlatButton(text='Add route!')
-        # self.add_button = Button(text="Add Route!",
-        #                          font_size="20sp",
-        #                          background_color=(66 / 255, 135 / 255, 245 / 255, 1),
-        #                          color=(2, .5, .5, 1),
-        #                          size=(32, 32),
-        #                          size_hint=(.2, .2),
-        #                          pos=(300, 250))
+        self.button_container = FloatLayout(size_hint=(1, .25))
+        self.add_button = MDRectangleFlatButton(text='Add route!',
+                                                pos_hint={'center_x': 0.5, 'center_y': 0.5})
+        self.button_container.add_widget(self.add_button)
         self.add_button.bind(on_press=self.onClick)
-        self.top_level_layout.add_widget(self.add_button)
+        self.top_level_layout.add_widget(self.button_container)
         self.add_widget(self.top_level_layout)
 
     def onClick(self, button):
