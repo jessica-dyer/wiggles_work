@@ -9,6 +9,8 @@ from kivy.graphics import Color, Rectangle
 from kivy.uix.stacklayout import StackLayout
 from kivy.uix.widget import Widget
 from ui.color import WWColors
+from kivymd.app import MDApp
+from kivymd.uix.label import MDLabel
 
 
 class RouteListRowView(RecycleDataViewBehavior, GridLayout):
@@ -24,9 +26,8 @@ class RouteListRowView(RecycleDataViewBehavior, GridLayout):
         self.backgroundView = Widget()
         self.add_widget(self.backgroundView, 1)
         self.route = None
-        self.name_label = Label(text="",
-                                color=(0, 0, 0, 1))
-        self.grade_label = Label(text="")
+        self.name_label = MDLabel(text="")
+        self.grade_label = MDLabel(text="", halign='center')
         # self.grade_label.size = (100, 50)
         # self.name_label.size = (200, 50)
         self.row_layout.add_widget(self.grade_label)
@@ -34,7 +35,6 @@ class RouteListRowView(RecycleDataViewBehavior, GridLayout):
         # with self.grade_label.canvas:
         #     Color(1, 0, 0, 0.75)  # color for highlight on click
         #     Rectangle(pos=self.grade_label.pos, size=self.grade_label.size)
-
 
     def refresh_view_attrs(self, rv, index, data_item):
         self.wiggles_work_app = rv.wiggles_work_app
@@ -48,8 +48,8 @@ class RouteListRowView(RecycleDataViewBehavior, GridLayout):
         if self.collide_point(*touch.pos) and self.selectable:
             self.selected = True
             with self.backgroundView.canvas:
-                #Color(0,1,0,1)
-                #WWColors.ROW_CLICK_HIGHLIGHT_STUPID  # color for highlight on click
+                # Color(0,1,0,1)
+                # WWColors.ROW_CLICK_HIGHLIGHT_STUPID  # color for highlight on click
                 self.backgroundView.canvas.add(WWColors.ROW_CLICK_HIGHLIGHT)
                 Rectangle(pos=self.pos, size=self.size)
 

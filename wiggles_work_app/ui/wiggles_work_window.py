@@ -23,22 +23,22 @@ from kivy.uix.textinput import TextInput
 from kivymd.app import MDApp
 from kivymd.uix.label import MDLabel
 
-
 from ui.edit_route_screen import *
+
 
 class WigglesWorkWindow(MDApp):
 
-    def __init__(self, initial_view):
+    def __init__(self):
         super().__init__()
         self.container_layout = GridLayout(rows=1)
-        self.container_layout.add_widget(initial_view)
-        self.current_view = initial_view
+        # self.container_layout.add_widget(initial_view)
+        self.current_view = None
 
     def build(self):
         return self.container_layout
 
     def set_view(self, new_view):
-        self.container_layout.remove_widget(self.current_view)
+        if self.current_view is not None:
+            self.container_layout.remove_widget(self.current_view)
         self.container_layout.add_widget(new_view)
         self.current_view = new_view
-

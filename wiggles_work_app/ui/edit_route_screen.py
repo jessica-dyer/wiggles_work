@@ -62,7 +62,6 @@ class EditRouteScreen(BoxLayout):
         self.ascent_list_view.set_climber(self.wiggles_work_app, self.current_climber)
         self.add_widget(self.ascent_list_view)
 
-
         self.button_container = GridLayout(cols=3,
                                            size_hint=(1, 10))
         self.save_button = Button(text="Save")
