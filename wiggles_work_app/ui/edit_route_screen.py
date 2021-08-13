@@ -14,6 +14,7 @@ from kivymd.uix.label import MDLabel
 from kivymd.uix.button import MDRectangleFlatButton
 from kivy.uix.floatlayout import FloatLayout
 from kivy.graphics import Color, Rectangle
+from kivymd.uix.dialog import MDDialog
 
 
 class RouteScreenMode(Enum):
@@ -53,19 +54,20 @@ class EditRouteScreen(BoxLayout):
         self.cancel_button = MDRectangleFlatButton(text="Cancel",
                                                    pos_hint={'center_x': 0.5, 'center_y': 0.5})
         self.delete_button = MDRectangleFlatButton(text="Delete route",
-                                                   pos_hint={'center_x': 0.5, 'center_y': 0.5})
+                                                   pos_hint={'center_x': 0.5, 'center_y': 0.5},
+                                                   on_release=self.show_delete_warning)
         self.save_button = MDRectangleFlatButton(text="Save",
                                                  pos_hint={'center_x': 0.5, 'center_y': 0.5})
 
         self.save_button.bind(on_press=self.on_click_save)
         self.cancel_button.bind(on_press=self.on_click_cancel)
-        self.delete_button.bind(on_press=self.on_click_delete)
+        # self.delete_button.bind(on_press=self.on_click_delete)
         # self.button_container.add_widget(self.cancel_button)
 
         self.button_outer_container = FloatLayout(size_hint=(1, 10))
-        button_spacing = 50
-        width_needed_for_buttons = self.cancel_button.width * 3 + button_spacing*2
-        self.button_inner_container = BoxLayout(pos_hint={'center_x': 0.5, 'center_y': 0.5},
+        button_spacing = 20
+        width_needed_for_buttons = (self.cancel_button.width * 3) + (button_spacing * 2)
+        self.button_inner_container = BoxLayout(pos_hint={'center_x': .5, 'center_y': .5},
                                                 width=width_needed_for_buttons,
                                                 size_hint=(None, None),
                                                 spacing=button_spacing)
@@ -77,11 +79,6 @@ class EditRouteScreen(BoxLayout):
 
         self.button_outer_container.add_widget(self.button_inner_container)
         self.add_widget(self.button_outer_container)
-
-        with self.form_field_grid_layout.canvas.after:
-            Color(0, 1, 0, 1)
-            Rectangle(pos=self.form_field_grid_layout.pos, size=self.form_field_grid_layout.size)
-
 
         if self.route is not None:
             self.name_field.field.text = self.route.name
@@ -105,10 +102,22 @@ class EditRouteScreen(BoxLayout):
     def on_click_cancel(self, button):
         self.wiggles_work_app.navigate_to_route_list()
 
-    def on_click_delete(self, button):
-        foo = DeleteConfirmationScreen(self.wiggles_work_app, self.route.name, self, self.on_delete_confirmed)
-        self.wiggles_work_app.window.set_view(foo)
+    # def on_click_delete(self, button):
+    #     foo = DeleteConfirmationScreen(self.wiggles_work_app, self.route.name, self, self.on_delete_confirmed)
+    #     self.wiggles_work_app.window.set_view(foo)
 
-    def on_delete_confirmed(self):
+    def show_delete_warning(self, obj):
+        cancel_button = MDRectangleFlatButton(text='Cancel', on_release=self.close_dialog)
+        delete_button = MDRectangleFlatButton(text='I really want to delete!', on_release=self.on_delete_confirmed)
+        self.dialog_box = MDDialog(title='Delete confirmation',
+                                   buttons=[cancel_button, delete_button])
+        self.dialog_box.open()
+
+    def close_dialog(self, obj):
+        self.dialog_box.dismiss
+
+    def on_delete_confirmed(self, obj):
         self.wiggles_work_app.data_repository.delete_route(self.route)
         self.wiggles_work_app.navigate_to_route_list()
+        self.dialog_box.dismiss
+

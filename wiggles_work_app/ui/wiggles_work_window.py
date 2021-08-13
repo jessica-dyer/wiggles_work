@@ -36,7 +36,7 @@ class WigglesWorkWindow(MDApp):
 
     def build(self):
         self.theme_cls.primary_palette = "Blue"
-        # self.theme_cls.theme_style = "Dark"
+        self.theme_cls.theme_style = "Dark"
         return self.container_layout
 
     def set_view(self, new_view):
