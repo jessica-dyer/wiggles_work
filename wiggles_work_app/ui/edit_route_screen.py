@@ -15,6 +15,7 @@ from kivymd.uix.button import MDRectangleFlatButton
 from kivy.uix.floatlayout import FloatLayout
 from kivy.graphics import Color, Rectangle
 from kivymd.uix.dialog import MDDialog
+from background_color_debugging import *
 
 
 class RouteScreenMode(Enum):
@@ -71,8 +72,12 @@ class EditRouteScreen(BoxLayout):
         #                                         pos_hint={'center_x':0.5})
         # button_spacing = 20
         # width_needed_for_buttons = (self.cancel_button.width * 3) + (button_spacing * 2)
-        self.button_inner_container = BoxLayout(orientation='horizontal', spacing=10, padding=40,
-                                                pos_hint={'center_x':0.5})
+        self.button_inner_container = GridLayout(rows=1,
+                                                 padding=8,
+                                                 spacing=15,
+                                                 pos_hint={'center_x': 0.5},
+                                                 size_hint=(None, None),
+                                                 size=(0, 50))
         # self.button_inner_container = BoxLayout(pos_hint={'center_x': .5, 'center_y': .5},
         #                                         width=width_needed_for_buttons,
         #                                         size_hint=(0.5, 0.5),
@@ -82,6 +87,8 @@ class EditRouteScreen(BoxLayout):
         if self.mode == RouteScreenMode.EDIT:
             self.button_inner_container.add_widget(self.delete_button)
         self.button_inner_container.add_widget(self.save_button)
+        self.button_inner_container.do_layout()
+        self.button_inner_container.width = self.button_inner_container.minimum_width
 
         # self.button_outer_container.add_widget(self.button_inner_container)
         self.add_widget(self.button_inner_container)
@@ -126,4 +133,3 @@ class EditRouteScreen(BoxLayout):
         self.wiggles_work_app.data_repository.delete_route(self.route)
         self.wiggles_work_app.navigate_to_route_list()
         self.dialog_box.dismiss
-
