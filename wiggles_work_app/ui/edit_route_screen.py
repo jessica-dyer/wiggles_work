@@ -51,34 +51,40 @@ class EditRouteScreen(BoxLayout):
         self.add_widget(self.ascent_list_view)
 
         # BUTTON CONTAINERS TO HOLD THE BUTTONS ON THE BOTTOM OF THE SCREEN
-        self.cancel_button = MDRectangleFlatButton(text="Cancel",
-                                                   pos_hint={'center_x': 0.5, 'center_y': 0.5})
+        # self.cancel_button = MDRectangleFlatButton(text="Cancel",
+        #                                            pos_hint={'center_x': 0.5, 'center_y': 0.5})
+        # self.delete_button = MDRectangleFlatButton(text="Delete route",
+        #                                            pos_hint={'center_x': 0.5, 'center_y': 0.5},
+        #                                            on_release=self.show_delete_warning)
+        # self.save_button = MDRectangleFlatButton(text="Save",
+        #                                          pos_hint={'center_x': 0.5, 'center_y': 0.5})
+        self.cancel_button = MDRectangleFlatButton(text="Cancel")
         self.delete_button = MDRectangleFlatButton(text="Delete route",
-                                                   pos_hint={'center_x': 0.5, 'center_y': 0.5},
                                                    on_release=self.show_delete_warning)
-        self.save_button = MDRectangleFlatButton(text="Save",
-                                                 pos_hint={'center_x': 0.5, 'center_y': 0.5})
-
+        self.save_button = MDRectangleFlatButton(text="Save")
         self.save_button.bind(on_press=self.on_click_save)
         self.cancel_button.bind(on_press=self.on_click_cancel)
         # self.delete_button.bind(on_press=self.on_click_delete)
         # self.button_container.add_widget(self.cancel_button)
 
-        self.button_outer_container = FloatLayout(size_hint=(1, 10))
-        button_spacing = 20
-        width_needed_for_buttons = (self.cancel_button.width * 3) + (button_spacing * 2)
-        self.button_inner_container = BoxLayout(pos_hint={'center_x': .5, 'center_y': .5},
-                                                width=width_needed_for_buttons,
-                                                size_hint=(None, None),
-                                                spacing=button_spacing)
+        # self.button_outer_container = BoxLayout(size_hint=(1, 10),
+        #                                         pos_hint={'center_x':0.5})
+        # button_spacing = 20
+        # width_needed_for_buttons = (self.cancel_button.width * 3) + (button_spacing * 2)
+        self.button_inner_container = BoxLayout(orientation='horizontal', spacing=10, padding=40,
+                                                pos_hint={'center_x':0.5})
+        # self.button_inner_container = BoxLayout(pos_hint={'center_x': .5, 'center_y': .5},
+        #                                         width=width_needed_for_buttons,
+        #                                         size_hint=(0.5, 0.5),
+        #                                         spacing=button_spacing)
 
         self.button_inner_container.add_widget(self.cancel_button)
         if self.mode == RouteScreenMode.EDIT:
             self.button_inner_container.add_widget(self.delete_button)
         self.button_inner_container.add_widget(self.save_button)
 
-        self.button_outer_container.add_widget(self.button_inner_container)
-        self.add_widget(self.button_outer_container)
+        # self.button_outer_container.add_widget(self.button_inner_container)
+        self.add_widget(self.button_inner_container)
 
         if self.route is not None:
             self.name_field.field.text = self.route.name
