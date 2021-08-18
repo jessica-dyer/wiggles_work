@@ -17,6 +17,7 @@ from kivy.graphics import Color, Rectangle
 from kivymd.uix.dialog import MDDialog
 from background_color_debugging import *
 from kivymd.uix.textfield import MDTextField
+from kivymd.uix.toolbar import MDToolbar
 
 
 class RouteScreenMode(Enum):
@@ -28,8 +29,8 @@ class EditRouteScreen(BoxLayout):
 
     def __init__(self, wiggles_work_app, route):
         super().__init__(orientation='vertical',
-                         padding=10,
-                         spacing=7)
+                         padding=20,
+                         spacing=20)
 
         if route is None:
             self.mode = RouteScreenMode.ADD
@@ -43,18 +44,25 @@ class EditRouteScreen(BoxLayout):
         # self.name_field = FormField("Route Name:", "")
         # self.grade_field = FormField("Grade:", "")
         # self.crag_field = FormField("Crag:", "")
-        self.name_field = MDTextField(hint_text="Route Name:",
-                                      pos_hint={'center_x': 0.5, 'center_y': 0.8})
-        self.grade_field = MDTextField(hint_text="Grade:",
-                                       pos_hint={'center_x': 0.5, 'center_y': 0.7})
-        self.crag_field = MDTextField(hint_text="Crag:",
-                                      pos_hint={'center_x': 0.5, 'center_y': 0.6})
-        
-        # self.add_widget(self.form_field_grid_layout)
-        # self.form_field_grid_layout.add_widget(self.name_field)
-        # self.form_field_grid_layout.add_widget(self.grade_field)
-        # self.form_field_grid_layout.add_widget(self.crag_field)
 
+        self.toolbar = MDToolbar(title="Climbing Bingo",
+                                 elevation=8,
+                                 pos_hint={'center_y': 1})
+
+        self.name_field = MDTextField(hint_text="Route Name:",
+                                      pos_hint={'center_x': 0.5, 'center_y': 0.8},
+                                      mode='fill',
+                                      fill_color=(0, 0, 0, .2))
+        self.grade_field = MDTextField(hint_text="Grade:",
+                                       pos_hint={'center_x': 0.5, 'center_y': 0.7},
+                                       mode='fill',
+                                       fill_color=(0, 0, 0, .2))
+        self.crag_field = MDTextField(hint_text="Crag:",
+                                      pos_hint={'center_x': 0.5, 'center_y': 0.6},
+                                      mode='fill',
+                                      fill_color=(0, 0, 0, .2))
+
+        self.add_widget(self.toolbar)
         self.add_widget(self.name_field)
         self.add_widget(self.grade_field)
         self.add_widget(self.crag_field)
@@ -64,14 +72,6 @@ class EditRouteScreen(BoxLayout):
         self.ascent_list_view.set_climber(self.wiggles_work_app, self.current_climber)
         self.add_widget(self.ascent_list_view)
 
-        # BUTTON CONTAINERS TO HOLD THE BUTTONS ON THE BOTTOM OF THE SCREEN
-        # self.cancel_button = MDRectangleFlatButton(text="Cancel",
-        #                                            pos_hint={'center_x': 0.5, 'center_y': 0.5})
-        # self.delete_button = MDRectangleFlatButton(text="Delete route",
-        #                                            pos_hint={'center_x': 0.5, 'center_y': 0.5},
-        #                                            on_release=self.show_delete_warning)
-        # self.save_button = MDRectangleFlatButton(text="Save",
-        #                                          pos_hint={'center_x': 0.5, 'center_y': 0.5})
         self.cancel_button = MDRectangleFlatButton(text="Cancel")
         self.delete_button = MDRectangleFlatButton(text="Delete route",
                                                    on_release=self.show_delete_warning)
@@ -104,9 +104,9 @@ class EditRouteScreen(BoxLayout):
         route_to_save = self.route
         if self.mode is RouteScreenMode.ADD:
             route_to_save = Route()
-        route_to_save.name = self.name_field.field.text
-        route_to_save.grade = self.grade_field.field.text
-        route_to_save.crag = self.crag_field.field.text
+        route_to_save.name = self.name_field.text
+        route_to_save.grade = self.grade_field.text
+        route_to_save.crag = self.crag_field.text
 
         if self.mode is RouteScreenMode.ADD:
             self.wiggles_work_app.data_repository.add_route(route_to_save)
