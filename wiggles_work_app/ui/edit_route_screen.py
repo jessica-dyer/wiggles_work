@@ -16,6 +16,7 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.graphics import Color, Rectangle
 from kivymd.uix.dialog import MDDialog
 from background_color_debugging import *
+from kivymd.uix.textfield import MDTextField
 
 
 class RouteScreenMode(Enum):
@@ -26,7 +27,9 @@ class RouteScreenMode(Enum):
 class EditRouteScreen(BoxLayout):
 
     def __init__(self, wiggles_work_app, route):
-        super().__init__(orientation='vertical')
+        super().__init__(orientation='vertical',
+                         padding=10,
+                         spacing=7)
 
         if route is None:
             self.mode = RouteScreenMode.ADD
@@ -34,17 +37,27 @@ class EditRouteScreen(BoxLayout):
             self.mode = RouteScreenMode.EDIT
         self.route = route  # If route is 'None' it is an add not an edit
         self.wiggles_work_app = wiggles_work_app
-        self.form_field_grid_layout = GridLayout(cols=1,
-                                                 size_hint=(1, 30))
+        # self.form_field_grid_layout = GridLayout(cols=1,
+        #                                          size_hint=(1, 30))
         # NEED TO UPDATE THESE FORM FIELDS TO KIVYMD
-        self.name_field = FormField("Route Name:", "")
-        self.grade_field = FormField("Grade:", "")
-        self.crag_field = FormField("Crag:", "")
+        # self.name_field = FormField("Route Name:", "")
+        # self.grade_field = FormField("Grade:", "")
+        # self.crag_field = FormField("Crag:", "")
+        self.name_field = MDTextField(hint_text="Route Name:",
+                                      pos_hint={'center_x': 0.5, 'center_y': 0.8})
+        self.grade_field = MDTextField(hint_text="Grade:",
+                                       pos_hint={'center_x': 0.5, 'center_y': 0.7})
+        self.crag_field = MDTextField(hint_text="Crag:",
+                                      pos_hint={'center_x': 0.5, 'center_y': 0.6})
+        
+        # self.add_widget(self.form_field_grid_layout)
+        # self.form_field_grid_layout.add_widget(self.name_field)
+        # self.form_field_grid_layout.add_widget(self.grade_field)
+        # self.form_field_grid_layout.add_widget(self.crag_field)
 
-        self.add_widget(self.form_field_grid_layout)
-        self.form_field_grid_layout.add_widget(self.name_field)
-        self.form_field_grid_layout.add_widget(self.grade_field)
-        self.form_field_grid_layout.add_widget(self.crag_field)
+        self.add_widget(self.name_field)
+        self.add_widget(self.grade_field)
+        self.add_widget(self.crag_field)
 
         self.current_climber = self.wiggles_work_app.data_repository.climbers[0]
         self.ascent_list_view = AscentListView(size_hint=(1, 60))
@@ -65,23 +78,13 @@ class EditRouteScreen(BoxLayout):
         self.save_button = MDRectangleFlatButton(text="Save")
         self.save_button.bind(on_press=self.on_click_save)
         self.cancel_button.bind(on_press=self.on_click_cancel)
-        # self.delete_button.bind(on_press=self.on_click_delete)
-        # self.button_container.add_widget(self.cancel_button)
 
-        # self.button_outer_container = BoxLayout(size_hint=(1, 10),
-        #                                         pos_hint={'center_x':0.5})
-        # button_spacing = 20
-        # width_needed_for_buttons = (self.cancel_button.width * 3) + (button_spacing * 2)
         self.button_inner_container = GridLayout(rows=1,
                                                  padding=8,
                                                  spacing=15,
                                                  pos_hint={'center_x': 0.5},
                                                  size_hint=(None, None),
-                                                 size=(0, 50))
-        # self.button_inner_container = BoxLayout(pos_hint={'center_x': .5, 'center_y': .5},
-        #                                         width=width_needed_for_buttons,
-        #                                         size_hint=(0.5, 0.5),
-        #                                         spacing=button_spacing)
+                                                 size=(0, 80))
 
         self.button_inner_container.add_widget(self.cancel_button)
         if self.mode == RouteScreenMode.EDIT:
@@ -90,13 +93,12 @@ class EditRouteScreen(BoxLayout):
         self.button_inner_container.do_layout()
         self.button_inner_container.width = self.button_inner_container.minimum_width
 
-        # self.button_outer_container.add_widget(self.button_inner_container)
         self.add_widget(self.button_inner_container)
 
         if self.route is not None:
-            self.name_field.field.text = self.route.name
-            self.grade_field.field.text = self.route.grade
-            self.crag_field.field.text = self.route.crag
+            self.name_field.text = self.route.name
+            self.grade_field.text = self.route.grade
+            self.crag_field.text = self.route.crag
 
     def on_click_save(self, button):
         route_to_save = self.route

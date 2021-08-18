@@ -10,7 +10,7 @@ def create_hard_coded_data(app):
     lw.name = "Little Wiggles"
     app.data_repository.add_climber(lw)
     a1 = Ascent()
-    a1.route_id = "4fed8026-8a33-4ebc-bd38-35b5bec55344"
+    a1.route_id = "9ff8d5b2-813d-4e73-8595-1ab670178a5e"
     lw.ascents.append(a1)
     app.data_repository.export_to_file()
 

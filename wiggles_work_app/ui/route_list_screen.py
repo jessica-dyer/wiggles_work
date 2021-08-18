@@ -79,7 +79,7 @@ class RouteListScreen(GridLayout):
         self.recycleView = Builder.load_string(RouteListRecycleView_in_Kivy_language)
         self.recycleView.setWigglesWorkApp(self.wiggles_work_app)
         self.top_level_layout.add_widget(self.recycleView)
-        self.button_container = FloatLayout(size_hint=(1, .25))
+        self.button_container = modified_bg_color(FloatLayout)(size_hint=(1, .25))
         self.add_button = MDRectangleFlatButton(text='Add route!',
                                                 pos_hint={'center_x': 0.5, 'center_y': 0.5})
         self.button_container.add_widget(self.add_button)
