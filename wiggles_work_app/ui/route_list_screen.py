@@ -31,6 +31,7 @@ from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 from kivymd.uix.button import MDRectangleFlatButton
 from kivy.uix.floatlayout import FloatLayout
+from ui.wiggles_work_screen import *
 
 
 class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior,
@@ -88,8 +89,10 @@ class RouteListScreen(GridLayout):
         self.add_widget(self.top_level_layout)
 
     def onClick(self, button):
-        add_route_screen = EditRouteScreen(self.wiggles_work_app, route=None)
-        self.wiggles_work_app.window.set_view(add_route_screen)
+        # add_route_screen = EditRouteScreen(self.wiggles_work_app, route=None)
+        # self.wiggles_work_app.window.set_view(add_route_screen)
+        test_screen = WigglesWorkScreen()
+        self.wiggles_work_app.window.set_view(test_screen)
 
     def refreshList(self):
         self.recycleView.refreshData()
