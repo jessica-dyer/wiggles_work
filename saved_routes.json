@@ -1,0 +1,49 @@
+{
+    "routes": [
+        {
+            "id": "8547e3c6-05aa-475c-9449-70e96e9424aa",
+            "name": "Outer Space",
+            "grade": "5.9+",
+            "crag": "Snow Creek"
+        },
+        {
+            "id": "9ff8d5b2-813d-4e73-8595-1ab670178a5e",
+            "name": "Senior Citizens in Space",
+            "grade": "5.7",
+            "crag": "Private Idaho"
+        },
+        {
+            "id": "4d5167f6-0f30-4b91-a5ee-2c8d0ffc0ae9",
+            "name": "Battered Sandwich",
+            "grade": "5.9",
+            "crag": "Index"
+        },
+        {
+            "id": "90a5bba5-1764-4d3a-9132-4b50e7f22f32",
+            "name": "Sickle Crack",
+            "grade": "5.7",
+            "crag": "Index"
+        },
+        {
+            "id": "32106afe-b3b8-4720-947f-e7ed777a0656",
+            "name": "Test",
+            "grade": "5.13",
+            "crag": "Blah"
+        }
+    ],
+    "climbers": [
+        {
+            "id": "75bd60b0-4c99-4c1b-b75a-482b403adc34",
+            "name": "Little Wiggles",
+            "ascents": [
+                {
+                    "id": "93cff1d4-d7b8-42b7-80f0-02e30313b13d",
+                    "ascent_type": null,
+                    "date": null,
+                    "notes": "",
+                    "route_id": "9ff8d5b2-813d-4e73-8595-1ab670178a5e"
+                }
+            ]
+        }
+    ]
+}
