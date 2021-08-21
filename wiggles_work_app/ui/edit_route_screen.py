@@ -29,8 +29,8 @@ class EditRouteScreen(BoxLayout):
 
     def __init__(self, wiggles_work_app, route):
         super().__init__(orientation='vertical',
-                         padding=20,
-                         spacing=20)
+                         padding=0,
+                         spacing=10)
 
         if route is None:
             self.mode = RouteScreenMode.ADD
@@ -45,7 +45,7 @@ class EditRouteScreen(BoxLayout):
         # self.grade_field = FormField("Grade:", "")
         # self.crag_field = FormField("Crag:", "")
 
-        self.toolbar = MDToolbar(title="Climbing Bingo",
+        self.toolbar = MDToolbar(title="",
                                  elevation=8,
                                  pos_hint={'center_y': 1})
 
