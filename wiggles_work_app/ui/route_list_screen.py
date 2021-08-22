@@ -71,28 +71,24 @@ class RouteListRecycleView(RecycleView):
         self.data = [{'route': r} for r in all_routes]
 
 
-class RouteListScreen(GridLayout):
+class RouteListScreen(WigglesWorkScreen):
 
     def __init__(self, wiggles_work_app):
-        super().__init__(rows=3)
+        super().__init__()
         self.wiggles_work_app = wiggles_work_app
-        self.top_level_layout = GridLayout(rows=3)
         self.recycleView = Builder.load_string(RouteListRecycleView_in_Kivy_language)
         self.recycleView.setWigglesWorkApp(self.wiggles_work_app)
-        self.top_level_layout.add_widget(self.recycleView)
-        self.button_container = modified_bg_color(FloatLayout)(size_hint=(1, .25))
         self.add_button = MDRectangleFlatButton(text='Add route!',
                                                 pos_hint={'center_x': 0.5, 'center_y': 0.5})
-        self.button_container.add_widget(self.add_button)
+
+        self.screen_content.add_widget(self.recycleView)
+        self.bottom_button_container.add_widget(self.add_button)
+
         self.add_button.bind(on_press=self.onClick)
-        self.top_level_layout.add_widget(self.button_container)
-        self.add_widget(self.top_level_layout)
 
     def onClick(self, button):
-        # add_route_screen = EditRouteScreen(self.wiggles_work_app, route=None)
-        # self.wiggles_work_app.window.set_view(add_route_screen)
-        test_screen = WigglesWorkScreen()
-        self.wiggles_work_app.window.set_view(test_screen)
+        add_route_screen = EditRouteScreen(self.wiggles_work_app, route=None)
+        self.wiggles_work_app.window.set_view(add_route_screen)
 
     def refreshList(self):
         self.recycleView.refreshData()
