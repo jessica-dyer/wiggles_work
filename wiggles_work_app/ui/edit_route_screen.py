@@ -106,9 +106,9 @@ class EditRouteScreen(WigglesWorkScreen):
         self.dialog_box.open()
 
     def close_dialog(self, obj):
-        self.dialog_box.dismiss
+        self.dialog_box.dismiss()
 
     def on_delete_confirmed(self, obj):
         self.wiggles_work_app.data_repository.delete_route(self.route)
         self.wiggles_work_app.navigate_to_route_list()
-        self.dialog_box.dismiss
+        self.close_dialog(obj)
