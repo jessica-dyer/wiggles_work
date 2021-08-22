@@ -4,8 +4,13 @@ from kivymd.uix.toolbar import MDToolbar
 from kivy.uix.gridlayout import GridLayout
 from background_color_debugging import *
 
+class AfterInitCaller(type(MDScreen)):
+    def __call__(cls, *args, **kwargs):
+        obj = type.__call__(cls, *args, **kwargs)
+        obj.after_init()
+        return obj
 
-class WigglesWorkScreen(MDScreen):
+class WigglesWorkScreen(MDScreen, metaclass=AfterInitCaller):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -26,9 +31,8 @@ class WigglesWorkScreen(MDScreen):
         self.screen_box_layout.add_widget(self.bottom_button_container)
         self.add_widget(self.screen_box_layout)
 
-    def on_pre_enter(self, *args):
-        super().on_pre_enter(args)
-        print("You're in on_pre_enter")
+
+    def after_init(self):
         self.bottom_button_container.do_layout()
         self.bottom_button_container.width = self.bottom_button_container.minimum_width
 
