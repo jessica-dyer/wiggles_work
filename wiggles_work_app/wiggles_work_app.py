@@ -2,6 +2,7 @@ from data_repository import DataRepository
 from ui.route_list_screen import RouteListScreen
 from ui.edit_route_screen import EditRouteScreen
 from ui.wiggles_work_window import WigglesWorkWindow
+from ui.intro_screen import *
 
 
 class WigglesWorkApp:
@@ -10,7 +11,8 @@ class WigglesWorkApp:
         self.data_repository = DataRepository()
         self.window = WigglesWorkWindow()
         self.route_list_screen = RouteListScreen(self)
-        self.window.set_view(self.route_list_screen)
+        self.intro_screen = IntroductionScreen(self)
+        self.window.set_view(self.intro_screen)
 
     def start(self):
         self.window.run()

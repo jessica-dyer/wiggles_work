@@ -31,11 +31,10 @@ class WigglesWorkWindow(MDApp):
     def __init__(self):
         super().__init__()
         self.container_layout = GridLayout(rows=1)
-        # self.container_layout.add_widget(initial_view)
         self.current_view = None
 
     def build(self):
-        self.theme_cls.primary_palette = "Red"
+        self.theme_cls.primary_palette = "Blue"
         # self.theme_cls.theme_style = "Dark"
         return self.container_layout
 

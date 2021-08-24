@@ -20,12 +20,7 @@ def test():
     ascent.wiggles_work_app = app
     if len(app.data_repository.climbers) == 0:
         create_hard_coded_data(app)
-    lw = app.data_repository.climbers[0]
-    n = lw.ascents[0].route.name
 
-    from ui.color import WWColors
-    stupid_color = WWColors.ROW_CLICK_HIGHLIGHT
-    print(stupid_color)
     app.start()
 
 

@@ -23,6 +23,12 @@
             "name": "Sickle Crack",
             "grade": "5.7",
             "crag": "Index"
+        },
+        {
+            "id": "28c57fc8-c8a8-4629-898c-52f947ffdb16",
+            "name": "Classic Crack",
+            "grade": "5.8",
+            "crag": "Leavenworth"
         }
     ],
     "climbers": [
