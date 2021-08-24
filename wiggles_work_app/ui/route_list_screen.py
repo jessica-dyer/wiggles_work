@@ -29,7 +29,7 @@ from ui.route_list_row_view import RouteListRowView
 from kivy.uix.recycleboxlayout import RecycleBoxLayout
 from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.recycleview.layout import LayoutSelectionBehavior
-from kivymd.uix.button import MDRectangleFlatButton, MDFillRoundFlatButton
+from kivymd.uix.button import MDRectangleFlatButton, MDFillRoundFlatButton, MDFloatingBottomButton
 from kivy.uix.floatlayout import FloatLayout
 from ui.wiggles_work_screen import *
 
@@ -78,8 +78,10 @@ class RouteListScreen(WigglesWorkScreen):
         self.wiggles_work_app = wiggles_work_app
         self.recycleView = Builder.load_string(RouteListRecycleView_in_Kivy_language)
         self.recycleView.setWigglesWorkApp(self.wiggles_work_app)
-        self.add_button = MDFillRoundFlatButton(text='Add route!',
-                                                pos_hint={'center_x': 0.5, 'center_y': 0.5})
+        # self.add_button = MDFillRoundFlatButton(text='Add route!',
+        #                                         pos_hint={'center_x': 0.5, 'center_y': 0.5})
+
+        self.add_button = MDFloatingBottomButton(icon='plus-thick')
 
         self.screen_content.add_widget(self.recycleView)
         self.bottom_button_container.add_widget(self.add_button)
