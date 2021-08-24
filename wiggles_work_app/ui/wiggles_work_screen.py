@@ -39,5 +39,5 @@ class WigglesWorkScreen(MDScreen, metaclass=AfterInitCaller):
 
     def layout_for_screen_content(self):
         return BoxLayout(orientation='vertical',
-                         spacing=10,
-                         padding=(0, 10, 0, 10))
+                         spacing=20,
+                         padding=(0, 20, 0, 20))

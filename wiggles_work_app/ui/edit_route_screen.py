@@ -11,7 +11,7 @@ from kivy.uix.widget import Widget
 from kivy.uix.boxlayout import BoxLayout
 from ui.ascent_list_view import *
 from kivymd.uix.label import MDLabel
-from kivymd.uix.button import MDRectangleFlatButton
+from kivymd.uix.button import MDRectangleFlatButton, MDFillRoundFlatButton
 from kivy.uix.floatlayout import FloatLayout
 from kivy.graphics import Color, Rectangle
 from kivymd.uix.dialog import MDDialog
@@ -51,6 +51,7 @@ class EditRouteScreen(WigglesWorkScreen):
                                       mode='fill',
                                       fill_color=(0, 0, 0, .2))
 
+
         self.screen_content.add_widget(self.name_field)
         self.screen_content.add_widget(self.grade_field)
         self.screen_content.add_widget(self.crag_field)
@@ -60,10 +61,10 @@ class EditRouteScreen(WigglesWorkScreen):
         self.ascent_list_view.set_climber(self.wiggles_work_app, self.current_climber)
         self.screen_content.add_widget(self.ascent_list_view)
 
-        self.cancel_button = MDRectangleFlatButton(text="Cancel")
-        self.delete_button = MDRectangleFlatButton(text="Delete route",
+        self.cancel_button = MDFillRoundFlatButton(text="Cancel")
+        self.delete_button = MDFillRoundFlatButton(text="Delete route",
                                                    on_release=self.show_delete_warning)
-        self.save_button = MDRectangleFlatButton(text="Save")
+        self.save_button = MDFillRoundFlatButton(text="Save")
         self.save_button.bind(on_press=self.on_click_save)
         self.cancel_button.bind(on_press=self.on_click_cancel)
 
