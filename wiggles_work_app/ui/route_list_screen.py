@@ -32,6 +32,7 @@ from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 from kivymd.uix.button import MDRectangleFlatButton, MDFillRoundFlatButton, MDFloatingBottomButton
 from kivy.uix.floatlayout import FloatLayout
 from ui.wiggles_work_screen import *
+from ui.intro_screen import *
 
 
 class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior,
@@ -82,7 +83,7 @@ class RouteListScreen(WigglesWorkScreen):
         #                                         pos_hint={'center_x': 0.5, 'center_y': 0.5})
 
         self.add_button = MDFloatingBottomButton(icon='plus-thick')
-        self.toolbar.left_action_items = [["dots-vertical", lambda x: self.on_click_back()]]
+        self.toolbar.left_action_items = [["arrow-left-bold", lambda x: self.on_click_back()]]
         self.screen_content.add_widget(self.recycleView)
         self.bottom_button_container.add_widget(self.add_button)
 
@@ -93,7 +94,8 @@ class RouteListScreen(WigglesWorkScreen):
         self.wiggles_work_app.window.set_view(add_route_screen)
 
     def on_click_back(self):
-        print("You are trying to go back.")
+        intro_screen = IntroductionScreen(self.wiggles_work_app)
+        self.wiggles_work_app.window.set_view(intro_screen)
 
     def refreshList(self):
         self.recycleView.refreshData()
