@@ -82,7 +82,7 @@ class RouteListScreen(WigglesWorkScreen):
         #                                         pos_hint={'center_x': 0.5, 'center_y': 0.5})
 
         self.add_button = MDFloatingBottomButton(icon='plus-thick')
-
+        self.toolbar.left_action_items = [["dots-vertical", lambda x: self.on_click_back()]]
         self.screen_content.add_widget(self.recycleView)
         self.bottom_button_container.add_widget(self.add_button)
 
@@ -91,6 +91,9 @@ class RouteListScreen(WigglesWorkScreen):
     def onClick(self, button):
         add_route_screen = EditRouteScreen(self.wiggles_work_app, route=None)
         self.wiggles_work_app.window.set_view(add_route_screen)
+
+    def on_click_back(self):
+        print("You are trying to go back.")
 
     def refreshList(self):
         self.recycleView.refreshData()

@@ -29,6 +29,12 @@
             "name": "Classic Crack",
             "grade": "5.8",
             "crag": "Leavenworth"
+        },
+        {
+            "id": "e43c0380-77d6-4933-be2b-396456c7725c",
+            "name": "Poopy Potato",
+            "grade": "5.18",
+            "crag": "Smoo moo Wall"
         }
     ],
     "climbers": [
