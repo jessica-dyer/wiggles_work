@@ -103,6 +103,7 @@ class RouteListScreen(WigglesWorkScreen):
         self.screen_content.add_widget(self.recycleView)
         self.bottom_button_container.add_widget(self.add_button)
 
+        self.search_field.bind(on_text_validate=self.on_search_text_entered)
         self.add_button.bind(on_press=self.onClick)
 
     def onClick(self, button):
@@ -115,3 +116,6 @@ class RouteListScreen(WigglesWorkScreen):
 
     def refreshList(self):
         self.recycleView.refreshData()
+
+    def on_search_text_entered(self, other):
+        print(self.search_field.text)
