@@ -84,12 +84,12 @@ class RouteListScreen(WigglesWorkScreen):
         super().__init__()
         self.wiggles_work_app = wiggles_work_app
         self.icon = MDIconButton(icon='magnify')
-        self.search_field = MDTextField(hint_text='Search')
+        self.search_field = MDTextField(hint_text='Search routes')
         self.search_field_container = BoxLayout(orientation='horizontal',
-                                                                   spacing=10,
-                                                                   padding=10,
-                                                                   size_hint_y=None,
-                                                                   height=50)
+                                                spacing=5,
+                                                padding=(20, 0, 20, 0),
+                                                size_hint_y=None,
+                                                height=50)
         self.search_field_container.add_widget(self.icon)
         self.search_field_container.add_widget(self.search_field)
         self.recycleView = Builder.load_string(RouteListRecycleView_in_Kivy_language)
