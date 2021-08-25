@@ -4,6 +4,7 @@ import kivy
 # this restrict the kivy version i.e
 # below this kivy version you cannot
 # use the app or software
+
 kivy.require("1.9.1")
 
 # base Class of your App inherits from the App class.
@@ -33,6 +34,10 @@ from kivymd.uix.button import MDRectangleFlatButton, MDFillRoundFlatButton, MDFl
 from kivy.uix.floatlayout import FloatLayout
 from ui.wiggles_work_screen import *
 from ui.intro_screen import *
+from kivymd.uix.textfield import MDTextField
+from kivymd.uix.button import MDIconButton
+from kivy.uix.boxlayout import BoxLayout
+from background_color_debugging import *
 
 
 class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior,
@@ -47,6 +52,7 @@ RouteListRecycleView:
     viewclass: 'RouteListRowView'
     SelectableRecycleBoxLayout:
         default_size: None, dp(56)
+        padding: dp(10)
         default_size_hint: 1, None
         size_hint_y: None
         height: self.minimum_height
@@ -77,6 +83,15 @@ class RouteListScreen(WigglesWorkScreen):
     def __init__(self, wiggles_work_app):
         super().__init__()
         self.wiggles_work_app = wiggles_work_app
+        self.icon = MDIconButton(icon='magnify')
+        self.search_field = MDTextField(hint_text='Search')
+        self.search_field_container = BoxLayout(orientation='horizontal',
+                                                                   spacing=10,
+                                                                   padding=10,
+                                                                   size_hint_y=None,
+                                                                   height=50)
+        self.search_field_container.add_widget(self.icon)
+        self.search_field_container.add_widget(self.search_field)
         self.recycleView = Builder.load_string(RouteListRecycleView_in_Kivy_language)
         self.recycleView.setWigglesWorkApp(self.wiggles_work_app)
         # self.add_button = MDFillRoundFlatButton(text='Add route!',
@@ -84,6 +99,7 @@ class RouteListScreen(WigglesWorkScreen):
 
         self.add_button = MDFloatingBottomButton(icon='plus-thick')
         self.toolbar.left_action_items = [["arrow-left-bold", lambda x: self.on_click_back()]]
+        self.screen_content.add_widget(self.search_field_container)
         self.screen_content.add_widget(self.recycleView)
         self.bottom_button_container.add_widget(self.add_button)
 
