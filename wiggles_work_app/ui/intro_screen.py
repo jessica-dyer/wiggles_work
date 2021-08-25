@@ -4,6 +4,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.button import MDRectangleFlatButton, MDFillRoundFlatButton
 from kivy.uix.image import Image
+from background_color_debugging import *
 
 
 class IntroductionScreen(MDScreen):
@@ -13,10 +14,10 @@ class IntroductionScreen(MDScreen):
         self.wiggles_work_app = wiggles_work_app
         self.screen_box_layout = BoxLayout(orientation='vertical',
                                            # adaptive_height=True,
-                                           spacing=80,
-                                           padding=30,
+                                           spacing=60,
+                                           padding=50,
                                            pos_hint={'center_x': 0.5})
-        self.logo = Image(source='logo.png',
+        self.logo = Image(source='kg-harness-01.png',
                           size_hint=(None, None),
                           pos_hint={'center_x': 0.5})
         self.box_layout_text_fields = BoxLayout(orientation='vertical',

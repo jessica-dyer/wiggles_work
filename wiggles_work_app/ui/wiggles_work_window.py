@@ -24,7 +24,7 @@ from kivymd.app import MDApp
 from kivymd.uix.label import MDLabel
 
 from ui.edit_route_screen import *
-
+from ui.colors import *
 
 class WigglesWorkWindow(MDApp):
 
@@ -34,7 +34,9 @@ class WigglesWorkWindow(MDApp):
         self.current_view = None
 
     def build(self):
-        self.theme_cls.primary_palette = "Indigo"
+        self.theme_cls.colors = colors
+        self.theme_cls.primary_palette = "Teal"
+        self.theme_cls.accent_palette = "Red"
         # self.theme_cls.theme_style = "Dark"
         return self.container_layout
 
