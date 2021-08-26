@@ -3,6 +3,7 @@ from data_structures.route_list import *
 from data_structures.json_mappable import *
 from data_structures.data_structures import *
 from data_structures.climber import *
+import json
 
 class DataRepository(JsonMappable):
 
@@ -56,3 +57,10 @@ class DataRepository(JsonMappable):
                 climber_dictionaries = dictionary["climbers"]
                 self.climbers = JsonMappable.rehydrate_list(climber_dictionaries, Climber)
 
+    def getRoutesMatching(self, search_string):
+        matched_list = []
+        for r in self.routes:
+            temp_name = r.name
+            if search_string in temp_name:
+                matched_list.append(r)
+        return matched_list
