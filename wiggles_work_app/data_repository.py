@@ -62,6 +62,6 @@ class DataRepository(JsonMappable):
         search_string = search_string.lower()
         for r in self.routes:
             temp_name = r.name.lower()
-            if search_string in temp_name:
+            if search_string in temp_name or search_string in r.grade.lower():
                 matched_list.append(r)
         return matched_list

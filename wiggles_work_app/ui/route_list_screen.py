@@ -77,6 +77,7 @@ class RouteListRecycleView(RecycleView):
         self.show_these_routes(all_routes)
 
     def show_these_routes(self, list_of_routes):
+        # if you want to sort routes for the list view, sort them in here
         self.data = [{'route': r} for r in list_of_routes]
 
 

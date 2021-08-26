@@ -35,6 +35,12 @@
             "name": "Poopy Potato",
             "grade": "5.18",
             "crag": "Smoo moo Wall"
+        },
+        {
+            "id": "476e597e-1559-431e-9c3e-c550f6728b3d",
+            "name": "Test",
+            "grade": "5.13",
+            "crag": "Wiggles Wall"
         }
     ],
     "climbers": [

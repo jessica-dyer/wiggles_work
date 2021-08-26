@@ -21,6 +21,7 @@ AscentListRecycleView:
     viewclass: 'AscentListRowView'
     SelectableRecycleBoxLayout:
         default_size: None, dp(56)
+        padding: dp(10)
         default_size_hint: 1, None
         size_hint_y: None
         height: self.minimum_height
