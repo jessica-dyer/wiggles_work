@@ -120,4 +120,3 @@ class RouteListScreen(WigglesWorkScreen):
     def on_search_text_entered(self, other):
         print(self.search_field.text)
         filter_routes = self.wiggles_work_app.data_repository.getRoutesMatching(self.search_field.text)
-        print(filter_routes)

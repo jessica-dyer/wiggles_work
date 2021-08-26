@@ -1,12 +1,7 @@
-import kivy
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
-from kivy.uix.label import Label
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.properties import BooleanProperty
 from kivy.graphics import Color, Rectangle
-from kivy.uix.stacklayout import StackLayout
 from kivy.uix.widget import Widget
 from ui.color import WWColors
 from kivymd.uix.label import MDLabel
@@ -27,13 +22,8 @@ class RouteListRowView(RecycleDataViewBehavior, GridLayout):
         self.route = None
         self.name_label = MDLabel(text="")
         self.grade_label = MDLabel(text="", halign='center')
-        # self.grade_label.size = (100, 50)
-        # self.name_label.size = (200, 50)
         self.row_layout.add_widget(self.grade_label)
         self.row_layout.add_widget(self.name_label)
-        # with self.grade_label.canvas:
-        #     Color(1, 0, 0, 0.75)  # color for highlight on click
-        #     Rectangle(pos=self.grade_label.pos, size=self.grade_label.size)
 
     def refresh_view_attrs(self, rv, index, data_item):
         self.wiggles_work_app = rv.wiggles_work_app
