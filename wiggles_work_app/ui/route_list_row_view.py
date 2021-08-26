@@ -5,16 +5,17 @@ from kivy.graphics import Color, Rectangle
 from kivy.uix.widget import Widget
 from ui.color import WWColors
 from kivymd.uix.label import MDLabel
+from kivymd.uix.list import *
 
 
-class RouteListRowView(RecycleDataViewBehavior, GridLayout):
+class RouteListRowView(RecycleDataViewBehavior, TwoLineListItem):
     wiggles_work_app = None
     index = None
     selected = False
     selectable = BooleanProperty(True)
 
     def __init__(self):
-        super().__init__(cols=1)
+        super().__init__()
         self.row_layout = GridLayout(rows=1)
         self.add_widget(self.row_layout, index=0)
         self.backgroundView = Widget()
@@ -29,8 +30,10 @@ class RouteListRowView(RecycleDataViewBehavior, GridLayout):
         self.wiggles_work_app = rv.wiggles_work_app
         self.index = index
         self.route = data_item["route"]
-        self.name_label.text = self.route.name
-        self.grade_label.text = self.route.grade
+        # self.name_label.text = self.route.name
+        self.text = self.route.name
+        # self.grade_label.text = self.route.grade
+        self.secondary_text = self.route.grade
         self.size = self.row_layout.size
 
     def on_touch_down(self, touch):
