@@ -37,8 +37,6 @@ class RouteListRowView(RecycleDataViewBehavior, GridLayout):
         if self.collide_point(*touch.pos) and self.selectable:
             self.selected = True
             with self.backgroundView.canvas:
-                # Color(0,1,0,1)
-                # WWColors.ROW_CLICK_HIGHLIGHT_STUPID  # color for highlight on click
                 self.backgroundView.canvas.add(WWColors.ROW_CLICK_HIGHLIGHT)
                 Rectangle(pos=self.pos, size=self.size)
 
@@ -49,5 +47,4 @@ class RouteListRowView(RecycleDataViewBehavior, GridLayout):
         self.selected = False
 
     def onRowClicked(self):
-        print("Navigating to route " + self.route.name)
         self.wiggles_work_app.navigate_to_edit_route(self.route)

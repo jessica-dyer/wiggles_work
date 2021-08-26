@@ -59,8 +59,9 @@ class DataRepository(JsonMappable):
 
     def getRoutesMatching(self, search_string):
         matched_list = []
+        search_string = search_string.lower()
         for r in self.routes:
-            temp_name = r.name
+            temp_name = r.name.lower()
             if search_string in temp_name:
                 matched_list.append(r)
         return matched_list

@@ -74,8 +74,10 @@ class RouteListRecycleView(RecycleView):
 
     def refreshData(self):
         all_routes = self.wiggles_work_app.data_repository.routes
-        # if you want to sort routes for the list view, sort them in here
-        self.data = [{'route': r} for r in all_routes]
+        self.show_these_routes(all_routes)
+
+    def show_these_routes(self, list_of_routes):
+        self.data = [{'route': r} for r in list_of_routes]
 
 
 class RouteListScreen(WigglesWorkScreen):
@@ -120,3 +122,4 @@ class RouteListScreen(WigglesWorkScreen):
     def on_search_text_entered(self, other):
         print(self.search_field.text)
         filter_routes = self.wiggles_work_app.data_repository.getRoutesMatching(self.search_field.text)
+        self.recycleView.show_these_routes(filter_routes)
