@@ -10,7 +10,7 @@ from kivymd.uix.list import *
 from background_color_debugging import *
 
 
-class RouteListRowView(RecycleDataViewBehavior, TwoLineListItem):
+class RouteListRowView(RecycleDataViewBehavior, BaseListItem):
     wiggles_work_app = None
     index = None
     selected = False
@@ -43,6 +43,7 @@ class RouteListRowView(RecycleDataViewBehavior, TwoLineListItem):
         self.row_layout.pos = self.pos
 
     def on_touch_down(self, touch):
+        # super().on_touch_down(touch)
         if self.collide_point(*touch.pos) and self.selectable:
             self.selected = True
             with self.backgroundView.canvas:
@@ -50,6 +51,7 @@ class RouteListRowView(RecycleDataViewBehavior, TwoLineListItem):
                 Rectangle(pos=self.pos, size=self.size)
 
     def on_touch_up(self, touch):
+        # super().on_touch_up(touch)
         if self.collide_point(*touch.pos) and self.selected:
             self.onRowClicked()
         self.backgroundView.canvas.clear()

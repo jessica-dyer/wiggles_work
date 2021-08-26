@@ -24,7 +24,7 @@ class WWColors:
     #ROW_CLICK_HIGHLIGHT_STUPID = Color(0.847, 0.953, 0.863, 1)
     #ROW_CLICK_HIGHLIGHT = Color(0, 1, 0, 1)
     #ROW_CLICK_HIGHLIGHT = make_color("00FF00", 1)
-    ROW_CLICK_HIGHLIGHT = make_color("d8f3dc", .75)
+    ROW_CLICK_HIGHLIGHT = make_color("F2C185", .75)
 
 
 
