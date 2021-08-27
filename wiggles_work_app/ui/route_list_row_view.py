@@ -26,4 +26,4 @@ class RouteListRowView(WigglesRowView):
         self.grade_label.text = self.route.grade
 
     def onRowClicked(self):
-        self.wiggles_work_app.navigate_to_edit_route(self.route)
+        self.wiggles_work_app.navigate_to_view_route(self.route)

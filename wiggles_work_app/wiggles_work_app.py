@@ -3,6 +3,7 @@ from ui.route_list_screen import RouteListScreen
 from ui.edit_route_screen import EditRouteScreen
 from ui.wiggles_work_window import WigglesWorkWindow
 from ui.intro_screen import *
+from ui.view_route_screen import *
 
 
 class WigglesWorkApp:
@@ -24,3 +25,7 @@ class WigglesWorkApp:
     def navigate_to_edit_route(self, route):
         edit_screen = EditRouteScreen(self, route)
         self.window.set_view(edit_screen)
+
+    def navigate_to_view_route(self, route):
+        view_route = ViewRouteScreen(self, route)
+        self.window.set_view(view_route)
