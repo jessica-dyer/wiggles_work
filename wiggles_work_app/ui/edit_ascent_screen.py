@@ -43,7 +43,7 @@ class EditAscentScreen(WigglesWorkScreen):
         datePicker.bind(on_save=self.on_date_picked)
         datePicker.open()
 
-    def on_click_save_ascent(self):
+    def on_click_save_ascent(self, button):
         if self.mode == AscentScreenMode.ADD:
             self.wiggles_work_app.data_repository.add_ascent(self.ascent)
         else:

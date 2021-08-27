@@ -31,6 +31,6 @@ class WigglesWorkApp:
         view_route = ViewRouteScreen(self, route)
         self.window.set_view(view_route)
 
-    def navigate_to_add_ascent(self):
-        edit_ascent = EditAscentScreen(self, None)
+    def navigate_to_add_ascent(self, route):
+        edit_ascent = EditAscentScreen(self, ascent=None, route=route)
         self.window.set_view(edit_ascent)

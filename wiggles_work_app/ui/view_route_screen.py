@@ -61,4 +61,4 @@ class ViewRouteScreen(WigglesWorkScreen):
         self.wiggles_work_app.navigate_to_edit_route(self.route)
 
     def iClimbedThisClicked(self, button):
-        self.wiggles_work_app.navigate_to_add_ascent()
+        self.wiggles_work_app.navigate_to_add_ascent(self.route)

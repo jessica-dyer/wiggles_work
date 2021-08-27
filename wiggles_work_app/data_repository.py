@@ -10,7 +10,9 @@ class DataRepository(JsonMappable):
     def __init__(self):
         self.climbers = []
         self.routes = []
+        self.current_climber = None
         self.import_from_file()
+        self.current_climber = self.climbers[0]
 
     def add_route(self, new_route):
         self.routes.append(new_route)
@@ -33,8 +35,9 @@ class DataRepository(JsonMappable):
             return None
         return matches[0]
 
-    def add_ascent(self, ascent):
-        pass
+    def add_ascent(self, new_ascent):
+        self.current_climber.ascents.append(new_ascent)
+        self.export_to_file()
 
     def update_ascent(self, ascent):
         pass
