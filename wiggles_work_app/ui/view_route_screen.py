@@ -7,7 +7,6 @@ from kivymd.uix.card import MDCard
 from kivy.base import Builder
 from ui.ascent_list_view import *
 
-
 helper = '''
 MDSeparator: 
     height: "1dp"
@@ -28,9 +27,11 @@ class ViewRouteScreen(WigglesWorkScreen):
                                    pos_hint={"center_x": .5, "center_y": .5})
         self.route_crag = MDLabel(text=self.route.crag,
                                   pos_hint={"center_x": .5, "center_y": .5})
-        # self.screen_content.add_widget(self.name_field)
+        self.your_ascents = MDLabel(text="Your ascents",
+                                    padding=(8, 8))
         self.edit_route_button = MDFillRoundFlatButton(text="Edit Route Details")
         self.add_ascent_button = MDFillRoundFlatButton(text="I climbed this!")
+
 
         self.route_card = MDCard(orientation='vertical',
                                  padding=8,
@@ -52,10 +53,10 @@ class ViewRouteScreen(WigglesWorkScreen):
         self.current_climber = self.wiggles_work_app.data_repository.climbers[0]
         self.ascent_list_view = AscentListView(size_hint=(1, 60))
         self.ascent_list_view.set_climber(self.wiggles_work_app, self.current_climber)
+        self.screen_content.add_widget(self.your_ascents)
         self.screen_content.add_widget(self.ascent_list_view)
 
         self.bottom_button_container.add_widget(self.add_ascent_button)
-
 
     def onEditRouteButtonClicked(self, button):
         self.wiggles_work_app.navigate_to_edit_route(self.route)
