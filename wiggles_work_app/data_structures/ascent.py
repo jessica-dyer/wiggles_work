@@ -5,11 +5,14 @@ import uuid
 
 wiggles_work_app = None
 
+
 class AscentType(Enum):
     TOP_ROPE = 1
     ONSIGHT = 2
 
+
 class Ascent(JsonMappable):
+    day_format = "%Y-%m-%d"
     def __init__(self, id=uuid.uuid4()):
         self._cached_route = None
         self.id = id
@@ -37,7 +40,7 @@ class Ascent(JsonMappable):
         dictionary = {}
         dictionary["id"] = str(self.id)
         dictionary["ascent_type"] = self.ascent_type
-        dictionary["date"] = self.date
+        dictionary["date"] = self.date.strftime(Ascent.day_format)
         dictionary["notes"] = self.notes
         dictionary["route_id"] = str(self.route_id)
         return dictionary
@@ -51,7 +54,8 @@ class Ascent(JsonMappable):
             id = uuid.uuid4()
         ascent = Ascent(id)
         ascent.ascent_type = dictionary["ascent_type"]
-        ascent.date = dictionary["date"]
+        day_string = dictionary["date"]
+        ascent.date = datetime.strptime(day_string, Ascent.day_format)
         ascent.notes = dictionary["notes"]
         ascent.route_id = uuid.UUID(dictionary["route_id"])
         return ascent

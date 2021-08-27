@@ -33,6 +33,12 @@ class DataRepository(JsonMappable):
             return None
         return matches[0]
 
+    def add_ascent(self, ascent):
+        pass
+
+    def update_ascent(self, ascent):
+        pass
+
     def add_climber(self, climber):
         self.climbers.append(climber)
 
