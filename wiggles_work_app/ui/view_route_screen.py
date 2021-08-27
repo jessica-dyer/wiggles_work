@@ -35,14 +35,14 @@ class ViewRouteScreen(WigglesWorkScreen):
         # self.screen_content.add_widget(self.name_field)
         self.edit_route_button = MDFillRoundFlatButton(text="Edit Route Details")
         self.bottom_button_container.add_widget(self.edit_route_button)
-        # self.route_card = MDCard(orientation='vertical',
-        #                          padding=8,
-        #                          size_hint=(None, None),
-        #                          size=(280, 180),
-        #                          pos_hint={"center_x": .5, "center_y": .5},
-        #                          focus_behavior=True)
-        # self.route_card.add_widget(self.name_field)
-        self.route_card = Builder.load_string(card_helper)
+        self.route_card = MDCard(orientation='vertical',
+                                 padding=8,
+                                 size_hint=(None, None),
+                                 size=(280, 180),
+                                 pos_hint={"center_x": .5, "center_y": .5},
+                                 focus_behavior=True)
+        self.route_card.add_widget(self.name_field)
+        # self.route_card = Builder.load_string(card_helper)
         self.screen_content.add_widget(self.route_card)
         self.edit_route_button.bind(on_press=self.onEditRouteButtonClicked)
 
