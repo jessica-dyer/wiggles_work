@@ -56,10 +56,9 @@ class EditRouteScreen(WigglesWorkScreen):
         self.screen_content.add_widget(self.grade_field)
         self.screen_content.add_widget(self.crag_field)
 
-        self.current_climber = self.wiggles_work_app.data_repository.climbers[0]
-        self.ascent_list_view = AscentListView(size_hint=(1, 60))
-        self.ascent_list_view.set_climber(self.wiggles_work_app, self.current_climber)
-        self.screen_content.add_widget(self.ascent_list_view)
+        self.blank_text = MDLabel(text="")
+        self.screen_content.add_widget(self.blank_text)
+
 
         self.cancel_button = MDFillRoundFlatButton(text="Cancel")
         self.delete_button = MDFillRoundFlatButton(text="Delete route",
