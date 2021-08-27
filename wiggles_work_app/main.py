@@ -25,3 +25,9 @@ def test():
 
 
 test()
+
+import kivy
+import kivymd
+
+print("Using Kivy version " + kivy.__version__)
+print("Using KivyMD verson " + kivymd.__version__)
