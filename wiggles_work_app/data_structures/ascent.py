@@ -14,9 +14,9 @@ class AscentType(Enum):
 
     def name_for_dropdown(self):
         names = {
-            AscentType.TOP_ROPE: "Top rope",
-            AscentType.ONSIGHT: "On sight",
-            AscentType.REDPOINT: "Redpoint"
+            AscentType.TOP_ROPE.value: "Top rope",
+            AscentType.ONSIGHT.value: "On sight",
+            AscentType.REDPOINT.value: "Redpoint"
         }
         return names[self.value]
 
@@ -65,11 +65,13 @@ class Ascent(JsonMappable):
         else:
             id = uuid.uuid4()
         ascent = Ascent(id)
-        ascent_type_as_string = dictionary["ascent_type"]
+
         try:
+            ascent_type_as_string = dictionary["ascent_type"]
             ascent.ascent_type = AscentType[ascent_type_as_string]
         except:
-            print("Couldn't make an ascent type" + (ascent_type_as_string or "None"))
+            # print("Couldn't make an ascent type" + (ascent_type_as_string or "None"))
+            pass
         day_string = dictionary["date"]
         ascent.date = datetime.strptime(day_string, Ascent.day_format)
         ascent.notes = dictionary["notes"]

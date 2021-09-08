@@ -58,7 +58,7 @@ class EditAscentScreen(WigglesWorkScreen):
         foo =[]
         for type in AscentType:
             dict = {
-                "text": type.name,
+                "text": type.name_for_dropdown(),
                 "viewclass": "OneLineListItem",
                 "on_release": lambda x=type: self.on_dropdown_item_selected(x)}
             foo.append(dict)
@@ -66,7 +66,6 @@ class EditAscentScreen(WigglesWorkScreen):
 
     def on_dropdown_item_selected(self, selected_type):
         # self.ascent_type_button.(self.ascent_type_menu.text)
-        print(selected_type)
         self.ascent.ascent_type = selected_type
         self.ascent_type_menu.dismiss()
 
