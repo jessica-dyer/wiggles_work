@@ -6,6 +6,8 @@ from kivymd.uix.button import MDRoundFlatButton, MDFillRoundFlatButton
 from data_structures.ascent import *
 from ui.view_route_screen import *
 from kivymd.uix.label import MDLabel
+from kivymd.uix.menu import MDDropdownMenu
+from kivymd.uix.dropdownitem import MDDropDownItem
 
 
 class AscentScreenMode(Enum):
@@ -41,6 +43,35 @@ class EditAscentScreen(WigglesWorkScreen):
         self.select_date = MDFillRoundFlatButton(text="Select date")
         self.select_date.bind(on_press=self.show_date_picker_dialog)
         self.add_widget(self.select_date)
+
+        self.ascent_type_button = MDFillRoundFlatButton(text="Foo")
+        self.ascent_type_button.bind(on_press=self.on_dropdown_opened)
+        self.screen_content.add_widget(self.ascent_type_button)
+
+        self.ascent_type_menu = MDDropdownMenu(caller=self.ascent_type_button,
+                                               items=self.build_ascent_type_menu_items(),
+                                               position="center",
+                                               width_mult=4)
+
+    def build_ascent_type_menu_items(self):
+        # all_values = AscentType.__members__.values()
+        foo =[]
+        for type in AscentType:
+            dict = {
+                "text": type.name,
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x=type: self.on_dropdown_item_selected(x)}
+            foo.append(dict)
+        return foo
+
+    def on_dropdown_item_selected(self, selected_type):
+        # self.ascent_type_button.(self.ascent_type_menu.text)
+        print(selected_type)
+        self.ascent.ascent_type = selected_type
+        self.ascent_type_menu.dismiss()
+
+    def on_dropdown_opened(self, arg2):
+        self.ascent_type_menu.open()
 
     def on_date_picked(self, datePicker, dateObject, someOtherCrap):
         self.ascent.date = dateObject

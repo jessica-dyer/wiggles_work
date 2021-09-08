@@ -10,10 +10,20 @@ wiggles_work_app = None
 class AscentType(Enum):
     TOP_ROPE = 1
     ONSIGHT = 2
+    REDPOINT = 3
+
+    def name_for_dropdown(self):
+        names = {
+            AscentType.TOP_ROPE: "Top rope",
+            AscentType.ONSIGHT: "On sight",
+            AscentType.REDPOINT: "Redpoint"
+        }
+        return names[self.value]
 
 
 class Ascent(JsonMappable):
     day_format = "%Y-%m-%d"
+
     def __init__(self, id=uuid.uuid4()):
         self._cached_route = None
         self.id = id
@@ -40,7 +50,8 @@ class Ascent(JsonMappable):
     def to_dict_or_list(self):
         dictionary = {}
         dictionary["id"] = str(self.id)
-        dictionary["ascent_type"] = self.ascent_type
+        if self.ascent_type is not None:
+            dictionary["ascent_type"] = self.ascent_type.name
         dictionary["date"] = self.date.strftime(Ascent.day_format)
         dictionary["notes"] = self.notes
         dictionary["route_id"] = str(self.route_id)
@@ -54,7 +65,11 @@ class Ascent(JsonMappable):
         else:
             id = uuid.uuid4()
         ascent = Ascent(id)
-        ascent.ascent_type = dictionary["ascent_type"]
+        ascent_type_as_string = dictionary["ascent_type"]
+        try:
+            ascent.ascent_type = AscentType[ascent_type_as_string]
+        except:
+            print("Couldn't make an ascent type" + (ascent_type_as_string or "None"))
         day_string = dictionary["date"]
         ascent.date = datetime.strptime(day_string, Ascent.day_format)
         ascent.notes = dictionary["notes"]

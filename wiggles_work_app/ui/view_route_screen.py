@@ -32,7 +32,6 @@ class ViewRouteScreen(WigglesWorkScreen):
         self.edit_route_button = MDFillRoundFlatButton(text="Edit Route Details")
         self.add_ascent_button = MDFillRoundFlatButton(text="I climbed this!")
 
-
         self.route_card = MDCard(orientation='vertical',
                                  padding=8,
                                  size_hint=(1, None),

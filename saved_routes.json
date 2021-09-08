@@ -50,24 +50,28 @@
             "ascents": [
                 {
                     "id": "93cff1d4-d7b8-42b7-80f0-02e30313b13d",
-                    "ascent_type": null,
                     "date": "2021-08-26",
                     "notes": "",
                     "route_id": "9ff8d5b2-813d-4e73-8595-1ab670178a5e"
                 },
                 {
                     "id": "c4a2dbfa-244e-4b7f-b353-5972fdb167fe",
-                    "ascent_type": null,
                     "date": "2021-08-19",
                     "notes": "",
                     "route_id": "e43c0380-77d6-4933-be2b-396456c7725c"
                 },
                 {
                     "id": "d4bde48f-5545-4c09-8664-91eb806961f9",
-                    "ascent_type": null,
                     "date": "2021-08-27",
                     "notes": "",
                     "route_id": "9ff8d5b2-813d-4e73-8595-1ab670178a5e"
+                },
+                {
+                    "id": "2cc8112f-b08f-4d7f-bc13-c5d304205b0f",
+                    "ascent_type": "TOP_ROPE",
+                    "date": "2021-09-06",
+                    "notes": "",
+                    "route_id": "e43c0380-77d6-4933-be2b-396456c7725c"
                 }
             ]
         }
