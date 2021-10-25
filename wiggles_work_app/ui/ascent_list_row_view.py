@@ -35,5 +35,4 @@ class AscentListRowView(WigglesRowView):
         self.size = self.row_layout.size
 
     def onRowClicked(self):
-        print("Little Wiggles is funny and cute!")
-        # self.wiggles_work_app.navigate_to_edit_route(self.route)
+        self.wiggles_work_app.navigate_to_edit_ascent()
