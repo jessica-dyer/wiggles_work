@@ -19,7 +19,8 @@ class AscentScreenMode(Enum):
 
 
 class EditAscentScreen(WigglesWorkScreen):
-
+    # Parameter 'route' is only necessary for creating brand new ascents
+    # Otherwise this will use the route specified by the given ascent
     def __init__(self, wiggles_work_app, ascent=None, route=None):
         super().__init__()
         if ascent is not None and route is not None:

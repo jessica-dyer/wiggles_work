@@ -35,7 +35,7 @@ class WigglesWorkApp:
         edit_ascent = EditAscentScreen(self, ascent=None, route=route)
         self.window.set_view(edit_ascent)
 
-    def navigate_to_edit_ascent(self):
-    #     edit_ascent = EditAscentScreen(self, ascent=ascent, route=route)
-    #     self.window.set_view(edit_ascent)
-        print("Little Wiggles is funny and cute!")
+    def navigate_to_edit_ascent(self, ascent):
+        edit_ascent = EditAscentScreen(self, ascent=ascent, route=None)
+        self.window.set_view(edit_ascent)
+        # print("Little Wiggles is funny and cute!")

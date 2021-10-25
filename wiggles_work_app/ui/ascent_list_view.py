@@ -42,7 +42,7 @@ class AscentListRecycleView(RecycleView):
         self.refreshData()
 
     def refreshData(self):
-        all_ascents = self.current_climber.ascents
+        all_ascents = self.current_climber.get_ascents_of_route()
         # if you want to sort routes for the list view, sort them in here
         self.data = [{'ascent': r} for r in all_ascents]
 
