@@ -46,10 +46,12 @@ class EditAscentScreen(WigglesWorkScreen):
         self.route_name = MDLabel(text=f'Route name: {current_route_name}')
         self.ascent_type_label = MDLabel(text='')
         self.update_ascent_type_label()
-        self.date_label = MDLabel(text=f'Date climbed: {self.ascent.date}')
+        self.date_label = MDLabel(text='')
+        self.update_date_label()
         self.save_ascent_button = MDFillRoundFlatButton(text="Save")
-        self.screen_content.add_widget(self.save_ascent_button)
-        self.save_ascent_button.bind(on_press=self.on_click_save_ascent)
+        # self.screen_content.add_widget(self.save_ascent_button)
+        # self.save_ascent_button.bind(on_press=self.on_click_save_ascent)
+        self.bottom_button_container.add_widget(self.save_ascent_button)
         self.toolbar.left_action_items = [["arrow-left-bold", lambda x: self.on_click_back()]]
         self.notes_field = MDTextField(hint_text='Notes from the ascent:',
                                        mode='fill',
@@ -68,6 +70,7 @@ class EditAscentScreen(WigglesWorkScreen):
 
         self.screen_content.add_widget(self.route_card)
         self.screen_content.add_widget(self.notes_field)
+        # self.screen_content.add_widget(self.bottom_button_container)
         self.select_date = MDFillRoundFlatButton(text="Select date")
         self.select_date.bind(on_press=self.show_date_picker_dialog)
 
@@ -102,7 +105,7 @@ class EditAscentScreen(WigglesWorkScreen):
         self.ascent_type_menu.open()
 
     def update_ascent_type_label(self):
-        userFacingAscentType = "Not yet set"
+        userFacingAscentType = "Not yet set."
         if self.ascent.ascent_type is None:
             pass
         else:
@@ -110,9 +113,19 @@ class EditAscentScreen(WigglesWorkScreen):
 
         self.ascent_type_label.text = f'Ascent type: {userFacingAscentType}'
 
+    def update_date_label(self):
+        userFacingDate = 'Not yet set.'
+        if self.ascent.date is None:
+            pass
+        else:
+            userFacingDate = self.ascent.date.strftime(Ascent.user_facing_day_format)
+
+        self.date_label.text = f'Ascent date: {userFacingDate}'
 
     def on_date_picked(self, datePicker, dateObject, someOtherCrap):
         self.ascent.date = dateObject
+
+        self.update_date_label()
 
     def show_date_picker_dialog(self, button):
         datePicker = MDDatePicker()
@@ -120,6 +133,7 @@ class EditAscentScreen(WigglesWorkScreen):
         datePicker.open()
 
     def on_click_save_ascent(self, button):
+        self.ascent.notes = self.notes_field.text
         if self.mode == AscentScreenMode.ADD:
             self.wiggles_work_app.data_repository.add_ascent(self.ascent)
         else:

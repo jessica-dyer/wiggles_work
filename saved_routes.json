@@ -112,6 +112,13 @@
                     "date": "2021-10-10",
                     "notes": "",
                     "route_id": "e43c0380-77d6-4933-be2b-396456c7725c"
+                },
+                {
+                    "id": "ebdbd260-f123-4f99-a39e-327a852df4ad",
+                    "ascent_type": "ONSIGHT",
+                    "date": "2021-10-21",
+                    "notes": "Poopy poopy potato! ",
+                    "route_id": "e43c0380-77d6-4933-be2b-396456c7725c"
                 }
             ]
         }

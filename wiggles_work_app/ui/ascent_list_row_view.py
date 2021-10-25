@@ -19,7 +19,7 @@ class AscentListRowView(WigglesRowView):
     def __init__(self):
         super().__init__()
         self.ascent = None
-        self.name_label = MDLabel(text="jklfdsfasd;jkl")
+        self.name_label = MDLabel(text="")
         self.row_layout.add_widget(self.name_label)
         
 
@@ -28,7 +28,7 @@ class AscentListRowView(WigglesRowView):
         self.index = index
         self.ascent = data_item["ascent"]
         self.name_label.text = "Put something here"
-        # self.name_label.text = self.route.name
+        # self.name_label.text = self.ascent.id
         # self.grade_label.text = self.route.grade
         self.size = self.row_layout.size
 

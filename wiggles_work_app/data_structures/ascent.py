@@ -22,7 +22,8 @@ class AscentType(Enum):
 
 
 class Ascent(JsonMappable):
-    day_format = "%Y-%m-%d"
+    day_format = "%Y-%m-%d"  ## format for saving to JSON
+    user_facing_day_format = "%B %d, %Y"
 
     def __init__(self, id=uuid.uuid4()):
         self._cached_route = None
