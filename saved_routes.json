@@ -79,6 +79,39 @@
                     "date": "2021-09-06",
                     "notes": "",
                     "route_id": "9ff8d5b2-813d-4e73-8595-1ab670178a5e"
+                },
+                {
+                    "id": "adfdbba1-21b7-418a-ac2c-208d87041ada",
+                    "date": "2021-10-23",
+                    "notes": "",
+                    "route_id": "28c57fc8-c8a8-4629-898c-52f947ffdb16"
+                },
+                {
+                    "id": "adfdbba1-21b7-418a-ac2c-208d87041ada",
+                    "date": "2021-10-23",
+                    "notes": "",
+                    "route_id": "28c57fc8-c8a8-4629-898c-52f947ffdb16"
+                },
+                {
+                    "id": "bafe998a-8621-47ed-bd58-1f9279e7a8dc",
+                    "ascent_type": "ONSIGHT",
+                    "date": "2021-10-18",
+                    "notes": "",
+                    "route_id": "8547e3c6-05aa-475c-9449-70e96e9424aa"
+                },
+                {
+                    "id": "bafe998a-8621-47ed-bd58-1f9279e7a8dc",
+                    "ascent_type": "ONSIGHT",
+                    "date": "2021-10-18",
+                    "notes": "",
+                    "route_id": "8547e3c6-05aa-475c-9449-70e96e9424aa"
+                },
+                {
+                    "id": "f8d9b763-e4b3-42fa-9e1b-94bbba9d10f6",
+                    "ascent_type": "REDPOINT",
+                    "date": "2021-10-10",
+                    "notes": "",
+                    "route_id": "e43c0380-77d6-4933-be2b-396456c7725c"
                 }
             ]
         }
