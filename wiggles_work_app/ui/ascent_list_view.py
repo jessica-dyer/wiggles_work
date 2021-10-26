@@ -35,14 +35,17 @@ class AscentListRecycleView(RecycleView):
         super(AscentListRecycleView, self).__init__(**kwargs)
         self.wiggles_work_app = None
         self.current_climber = None
+        self.current_route = None
 
-    def setWigglesWorkApp(self, wiggles_work_app, climber):
+    def setWigglesWorkApp(self, wiggles_work_app, climber, current_route):
         self.current_climber = climber
+        self.current_route = current_route
         self.wiggles_work_app = wiggles_work_app
         self.refreshData()
 
     def refreshData(self):
-        all_ascents = self.current_climber.get_ascents_of_route()
+        all_ascents = self.current_climber.get_ascents_of_route(self.current_route)
+        # all_ascents = self.current_climber.ascents
         # if you want to sort routes for the list view, sort them in here
         self.data = [{'ascent': r} for r in all_ascents]
 
@@ -52,10 +55,12 @@ class AscentListView(GridLayout):
         super().__init__(cols=1, **kwargs)
         self.current_climber = None
         self.wiggles_work_app = None
+        self.current_route = None
         self.recycleView = Builder.load_string(AscentListRecycleView_in_Kivy_language)
         self.add_widget(self.recycleView)
 
-    def set_climber(self, app, climber):
+    def set_initial_var(self, app, climber, current_route):
         self.wiggles_work_app = app
         self.current_climber = climber
-        self.recycleView.setWigglesWorkApp(self.wiggles_work_app, self.current_climber)
+        self.current_route = current_route
+        self.recycleView.setWigglesWorkApp(self.wiggles_work_app, self.current_climber, self.current_route)

@@ -51,7 +51,7 @@ class ViewRouteScreen(WigglesWorkScreen):
 
         self.current_climber = self.wiggles_work_app.data_repository.climbers[0]
         self.ascent_list_view = AscentListView(size_hint=(1, 60))
-        self.ascent_list_view.set_climber(self.wiggles_work_app, self.current_climber)
+        self.ascent_list_view.set_initial_var(self.wiggles_work_app, self.current_climber, self.route)
         self.screen_content.add_widget(self.your_ascents)
         self.screen_content.add_widget(self.ascent_list_view)
 

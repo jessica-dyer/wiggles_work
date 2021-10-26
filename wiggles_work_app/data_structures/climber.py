@@ -1,6 +1,7 @@
 from data_structures.data_structures import *
 from data_structures.ascent import *
 
+
 class Climber(JsonMappable):
 
     def __init__(self, id=uuid.uuid4()):
@@ -31,5 +32,11 @@ class Climber(JsonMappable):
     def add_ascent(self, ascent):
         self.ascents.append(ascent)
 
-    def get_ascents_of_route(self, route):
+    def get_ascents_of_route(self, current_route):
         # return array of ascents that match the route id in route object
+        filtered_ascents = []
+        for item in self.ascents:
+            if item.route_id == current_route.id:
+                filtered_ascents.append(item)
+        filtered_ascents.sort(key=lambda x: x.date, reverse=True)
+        return filtered_ascents
