@@ -103,5 +103,38 @@
                 }
             ]
         }
+    ],
+    "bingo_games": [
+        {
+            "goals": [
+                {
+                    "type_class_name": "data_structures.funny_goal.FunnyGoal"
+                },
+                {
+                    "type_class_name": "data_structures.climbing_goal.ClimbingGoal"
+                },
+                {
+                    "type_class_name": "data_structures.funny_goal.FunnyGoal"
+                },
+                {
+                    "type_class_name": "data_structures.funny_goal.FunnyGoal"
+                },
+                {
+                    "type_class_name": "data_structures.climbing_goal.ClimbingGoal"
+                },
+                {
+                    "type_class_name": "data_structures.funny_goal.FunnyGoal"
+                },
+                {
+                    "type_class_name": "data_structures.funny_goal.FunnyGoal"
+                },
+                {
+                    "type_class_name": "data_structures.funny_goal.FunnyGoal"
+                },
+                {
+                    "type_class_name": "data_structures.funny_goal.FunnyGoal"
+                }
+            ]
+        }
     ]
 }

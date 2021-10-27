@@ -2,6 +2,7 @@ from data_structures.route import *
 from data_structures.json_mappable import *
 from data_structures.route import *
 from data_structures.climber import *
+from data_structures.bingo_game import *
 import json
 
 class DataRepository(JsonMappable):
@@ -53,6 +54,7 @@ class DataRepository(JsonMappable):
         dictionary = {}
         dictionary["routes"] = JsonMappable.serialize_list(self.routes)
         dictionary["climbers"] = JsonMappable.serialize_list(self.climbers)
+        dictionary["bingo_games"] = JsonMappable.serialize_list(self.bingo_games)
         return dictionary
 
     def export_to_file(self, filename='saved_routes.json'):
@@ -69,6 +71,9 @@ class DataRepository(JsonMappable):
             if "climbers" in dictionary.keys():
                 climber_dictionaries = dictionary["climbers"]
                 self.climbers = JsonMappable.rehydrate_list(climber_dictionaries, Climber)
+            if "bingo_games" in dictionary.keys():
+                bingo_game_dictionaries = dictionary["bingo_games"]
+                self.bingo_games = JsonMappable.rehydrate_list(bingo_game_dictionaries, BingoGame)
 
     def getRoutesMatching(self, search_string):
         matched_list = []

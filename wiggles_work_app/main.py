@@ -31,6 +31,7 @@ def create_hard_coded_bingo_game(app):
     my_game.goals.append(FunnyGoal(text='Cheered on a stranger!'))
 
     app.data_repository.bingo_games.append(my_game)
+    app.data_repository.export_to_file()
 
 
 def run_the_thing():
