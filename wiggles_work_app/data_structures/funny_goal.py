@@ -4,6 +4,12 @@ class FunnyGoal(AbstractGoal):
     def __init__(self, text = ''):
         self.text = text
 
+    def get_text(self):
+        return self.text
+
+    def is_complete(self):
+        return False
+
     def to_dict_or_list(self):
         dictionary = {}
         dictionary['text'] = self.text
