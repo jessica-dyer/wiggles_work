@@ -34,7 +34,7 @@ class Climber(JsonMappable):
         self.ascents.append(ascent)
 
     def delete_ascent(self, ascent):
-        pass
+        self.ascents.remove(ascent)
 
     def get_ascents_of_route(self, current_route):
         # return array of ascents that match the route id in route object

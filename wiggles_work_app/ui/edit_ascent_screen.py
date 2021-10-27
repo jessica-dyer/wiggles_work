@@ -2,13 +2,16 @@ import kivy
 from ui.wiggles_work_screen import *
 from kivymd.uix.picker import MDDatePicker
 from enum import Enum
-from kivymd.uix.button import MDRoundFlatButton, MDFillRoundFlatButton
 from data_structures.ascent import *
 from ui.view_route_screen import *
 from kivymd.uix.label import MDLabel
 from kivymd.uix.menu import MDDropdownMenu
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.uix.textfield import MDTextField
+from kivymd.uix.button import MDRectangleFlatButton, MDFillRoundFlatButton
+from kivymd.uix.dialog import MDDialog
+
+
 
 from kivymd.uix.dropdownitem import MDDropDownItem
 
@@ -49,10 +52,15 @@ class EditAscentScreen(WigglesWorkScreen):
         self.update_ascent_type_label()
         self.date_label = MDLabel(text='')
         self.update_date_label()
+
+        self.delete_ascent_button = MDFillRoundFlatButton(text="Delete")
+        self.delete_ascent_button.bind(on_press=self.show_delete_warning)
+        self.bottom_button_container.add_widget(self.delete_ascent_button)
+
         self.save_ascent_button = MDFillRoundFlatButton(text="Save")
-        # self.screen_content.add_widget(self.save_ascent_button)
-        # self.save_ascent_button.bind(on_press=self.on_click_save_ascent)
+        self.save_ascent_button.bind(on_press=self.on_click_save_ascent)
         self.bottom_button_container.add_widget(self.save_ascent_button)
+
         self.toolbar.left_action_items = [["arrow-left-bold", lambda x: self.on_click_back()]]
         self.notes_field = MDTextField(hint_text='Notes from the ascent:',
                                        mode='fill',
@@ -125,7 +133,6 @@ class EditAscentScreen(WigglesWorkScreen):
 
     def on_date_picked(self, datePicker, dateObject, someOtherCrap):
         self.ascent.date = dateObject
-
         self.update_date_label()
 
     def show_date_picker_dialog(self, button):
@@ -140,7 +147,27 @@ class EditAscentScreen(WigglesWorkScreen):
         else:
             self.wiggles_work_app.data_repository.update_ascent(self.ascent)
 
+    # def on_click_delete_ascent(self, button):
+    #     self.wiggles_work_app.data_repository.delete_ascent_from_current_climber(self.ascent)
+    #     print('you are deleting a route')
+
+    def show_delete_warning(self, obj):
+        cancel_button = MDRectangleFlatButton(text='Cancel', on_release=self.close_dialog)
+        delete_button = MDRectangleFlatButton(text='I really want to delete!', on_release=self.on_delete_confirmed)
+        self.dialog_box = MDDialog(title='Delete confirmation',
+                                   buttons=[cancel_button, delete_button])
+        self.dialog_box.open()
+
+    def close_dialog(self, obj):
+        self.dialog_box.dismiss()
+
+    def on_delete_confirmed(self, obj):
+        self.wiggles_work_app.data_repository.delete_ascent_from_current_climber(self.ascent)
+        self.wiggles_work_app.navigate_to_view_route(self.ascent.get_route())
+        self.close_dialog(obj)
+
     def on_click_back(self):
         # print("You're clicking the back button")
         view_route = ViewRouteScreen(self.wiggles_work_app, self.ascent.route)
         self.wiggles_work_app.window.set_view(view_route)
+

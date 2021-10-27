@@ -28,6 +28,7 @@ class DataRepository(JsonMappable):
 
     def delete_ascent_from_current_climber(self, ascent):
         self.current_climber.delete_ascent(ascent)
+        self.export_to_file()
 
     def get_route(self, route_id):
         # id_as_uuid = uuid.UUID(route_id)

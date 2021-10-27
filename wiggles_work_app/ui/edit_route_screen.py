@@ -92,7 +92,10 @@ class EditRouteScreen(WigglesWorkScreen):
         self.wiggles_work_app.navigate_to_route_list()
 
     def on_click_cancel(self, button):
-        self.wiggles_work_app.navigate_to_view_route(self.route)
+        if self.mode is RouteScreenMode.EDIT:
+            self.wiggles_work_app.navigate_to_view_route(self.route)
+        else:
+            self.wiggles_work_app.navigate_to_route_list()
 
     # def on_click_delete(self, button):
     #     foo = DeleteConfirmationScreen(self.wiggles_work_app, self.route.name, self, self.on_delete_confirmed)
@@ -112,3 +115,5 @@ class EditRouteScreen(WigglesWorkScreen):
         self.wiggles_work_app.data_repository.delete_route(self.route)
         self.wiggles_work_app.navigate_to_route_list()
         self.close_dialog(obj)
+
+
