@@ -13,4 +13,5 @@ class BingoGame(JsonMappable):
     def construct_from_dict(cls, dictionary):
         bg = BingoGame()
         goal_dictionaries = dictionary['goals']
-        climber.ascents = JsonMappable.rehydrate_list(goal_dictionaries)
+        bg.goals = JsonMappable.rehydrate_list(goal_dictionaries)
+        return bg

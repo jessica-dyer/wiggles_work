@@ -18,5 +18,6 @@ class FunnyGoal(AbstractGoal):
     @classmethod
     def construct_from_dict(cls, dictionary):
         foo = FunnyGoal()
-        foo.text = dictionary['text']
+        if 'text' in dictionary.keys():
+            foo.text = dictionary['text']
         return foo

@@ -22,5 +22,6 @@ class ClimbingGoal(AbstractGoal):
     @classmethod
     def construct_from_dict(cls, dictionary):
         foo = ClimbingGoal()
-        foo.route_id = uuid.UUID(dictionary['route_id'])
+        if 'route_id' in dictionary.keys():
+            foo.route_id = uuid.UUID(dictionary['route_id'])
         return foo
