@@ -1,7 +1,6 @@
-from data_structures.data_structures import *
-from data_structures.route_list import *
+from data_structures.route import *
 from data_structures.json_mappable import *
-from data_structures.data_structures import *
+from data_structures.route import *
 from data_structures.climber import *
 import json
 

@@ -1,5 +1,6 @@
-from data_structures.data_structures import *
+from data_structures.route import *
 from data_structures.ascent import *
+from data_structures.json_mappable import *
 
 
 class Climber(JsonMappable):

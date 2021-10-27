@@ -5,7 +5,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 from ui.form_field import *
 from enum import Enum
-from data_structures.data_structures import *
+from data_structures.route import *
 from ui.delete_confirmation_screen import *
 from kivy.uix.widget import Widget
 from kivy.uix.boxlayout import BoxLayout

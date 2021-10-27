@@ -1,4 +1,4 @@
-from data_structures.data_structures import *
+from data_structures.route import *
 from wiggles_work_app import WigglesWorkApp
 from data_structures.climber import *
 from data_structures import ascent
