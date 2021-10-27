@@ -63,6 +63,7 @@ class EditAscentScreen(WigglesWorkScreen):
 
         self.toolbar.left_action_items = [["arrow-left-bold", lambda x: self.on_click_back()]]
         self.notes_field = MDTextField(hint_text='Notes from the ascent:',
+                                       text=self.ascent.notes,
                                        mode='fill',
                                        fill_color=(0, 0, 0, .2),
                                        multiline=True)
