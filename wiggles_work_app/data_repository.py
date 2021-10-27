@@ -10,6 +10,7 @@ class DataRepository(JsonMappable):
         self.climbers = [] # type: Climber
         self.routes = [] # type: array of Route objects
         self.current_climber = None
+        self.bingo_games = []
         self.import_from_file()
         self.current_climber = self.climbers[0]
 
