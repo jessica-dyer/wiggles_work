@@ -8,8 +8,8 @@ import json
 class DataRepository(JsonMappable):
 
     def __init__(self):
-        self.climbers = []
-        self.routes = []
+        self.climbers = [] # type: Climber
+        self.routes = [] # type: array of Route objects
         self.current_climber = None
         self.import_from_file()
         self.current_climber = self.climbers[0]
@@ -26,6 +26,9 @@ class DataRepository(JsonMappable):
     def delete_route(self, route):
         self.routes.remove(route)
         self.export_to_file()
+
+    def delete_ascent_from_current_climber(self, ascent):
+        self.current_climber.delete_ascent(ascent)
 
     def get_route(self, route_id):
         # id_as_uuid = uuid.UUID(route_id)
