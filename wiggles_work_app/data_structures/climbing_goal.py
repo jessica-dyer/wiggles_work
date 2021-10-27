@@ -10,12 +10,11 @@ class ClimbingGoal(AbstractGoal):
 
     def to_dict_or_list(self):
         dictionary = {}
-        # dictionary['goals'] = JsonMappable.serialize_list(self.goals)
+        dictionary['route_id'] = str(self.route_id)
         return dictionary
 
     @classmethod
     def construct_from_dict(cls, dictionary):
         foo = ClimbingGoal()
-        # goal_dictionaries = dictionary['goals']
-        # climber.ascents = JsonMappable.rehydrate_list()
+        foo.route_id = uuid.UUID(dictionary['route_id'])
         return foo

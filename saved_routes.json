@@ -108,30 +108,39 @@
         {
             "goals": [
                 {
+                    "text": "Little wiggles is funny and cute!",
                     "type_class_name": "data_structures.funny_goal.FunnyGoal"
                 },
                 {
+                    "route_id": "28c57fc8-c8a8-4629-898c-52f947ffdb16",
                     "type_class_name": "data_structures.climbing_goal.ClimbingGoal"
                 },
                 {
+                    "text": "Walked all day, did not find crag!",
                     "type_class_name": "data_structures.funny_goal.FunnyGoal"
                 },
                 {
+                    "text": "Ate gummy candy for lunch!",
                     "type_class_name": "data_structures.funny_goal.FunnyGoal"
                 },
                 {
+                    "route_id": "4d5167f6-0f30-4b91-a5ee-2c8d0ffc0ae9",
                     "type_class_name": "data_structures.climbing_goal.ClimbingGoal"
                 },
                 {
+                    "text": "Big wiggles wiggled!",
                     "type_class_name": "data_structures.funny_goal.FunnyGoal"
                 },
                 {
+                    "text": "Hangdogged!",
                     "type_class_name": "data_structures.funny_goal.FunnyGoal"
                 },
                 {
+                    "text": "Wore crocs!",
                     "type_class_name": "data_structures.funny_goal.FunnyGoal"
                 },
                 {
+                    "text": "Cheered on a stranger!",
                     "type_class_name": "data_structures.funny_goal.FunnyGoal"
                 }
             ]
