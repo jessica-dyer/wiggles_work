@@ -100,6 +100,20 @@
                     "date": "2021-10-22",
                     "notes": "",
                     "route_id": "e43c0380-77d6-4933-be2b-396456c7725c"
+                },
+                {
+                    "id": "97937061-350a-49b2-b437-2f995ff98de3",
+                    "ascent_type": "ONSIGHT",
+                    "date": "2021-11-11",
+                    "notes": "",
+                    "route_id": "28c57fc8-c8a8-4629-898c-52f947ffdb16"
+                },
+                {
+                    "id": "672ab8c9-c80f-4742-85d4-8eef377a7724",
+                    "ascent_type": "ONSIGHT",
+                    "date": "2021-11-10",
+                    "notes": "",
+                    "route_id": "e43c0380-77d6-4933-be2b-396456c7725c"
                 }
             ]
         }
@@ -112,8 +126,8 @@
                     "type_class_name": "data_structures.funny_goal.FunnyGoal"
                 },
                 {
-                    "route_id": "28c57fc8-c8a8-4629-898c-52f947ffdb16",
-                    "type_class_name": "data_structures.climbing_goal.ClimbingGoal"
+                    "text": "",
+                    "type_class_name": "data_structures.funny_goal.FunnyGoal"
                 },
                 {
                     "text": "Walked all day, did not find crag!",
@@ -124,8 +138,8 @@
                     "type_class_name": "data_structures.funny_goal.FunnyGoal"
                 },
                 {
-                    "route_id": "4d5167f6-0f30-4b91-a5ee-2c8d0ffc0ae9",
-                    "type_class_name": "data_structures.climbing_goal.ClimbingGoal"
+                    "text": "",
+                    "type_class_name": "data_structures.funny_goal.FunnyGoal"
                 },
                 {
                     "text": "Big wiggles wiggled!",
