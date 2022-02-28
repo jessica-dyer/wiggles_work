@@ -19,6 +19,12 @@
             "crag": "Smoo moo Wall"
         },
         {
+            "id": "7b3626a9-3dc2-40f1-9a96-735f20590786",
+            "name": "Regular Route",
+            "grade": "5.6",
+            "crag": "WigglesWall"
+        },
+        {
             "id": "9ff8d5b2-813d-4e73-8595-1ab670178a5e",
             "name": "Senior Citizens in Space",
             "grade": "5.7",
@@ -114,6 +120,27 @@
                     "date": "2021-11-10",
                     "notes": "",
                     "route_id": "e43c0380-77d6-4933-be2b-396456c7725c"
+                },
+                {
+                    "id": "b29ae64d-08d7-47d0-9e89-008cf4cbe238",
+                    "ascent_type": "TOP_ROPE",
+                    "date": "2021-11-12",
+                    "notes": "",
+                    "route_id": "755ad154-cf88-4ebb-b75d-d88ca6a04be7"
+                },
+                {
+                    "id": "40e9a7c2-0d41-4fa8-8cb7-e0f9230c7bf8",
+                    "ascent_type": "ONSIGHT",
+                    "date": "2021-11-12",
+                    "notes": "We love reglar. ",
+                    "route_id": "7b3626a9-3dc2-40f1-9a96-735f20590786"
+                },
+                {
+                    "id": "40e9a7c2-0d41-4fa8-8cb7-e0f9230c7bf8",
+                    "ascent_type": "ONSIGHT",
+                    "date": "2021-11-12",
+                    "notes": "We love reglar. ",
+                    "route_id": "7b3626a9-3dc2-40f1-9a96-735f20590786"
                 }
             ]
         }
